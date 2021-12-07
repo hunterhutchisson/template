@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {Form, Button, Col} from 'react-bootstrap';
 import Headings from './components/Headings';
 import { loadMarkdownBasic, loadMarkdownCheat } from './actions/apiAction';
+import DisplayPreviews from './components/DisplayPreviews';
 
 function App() {
   const dispatch = useDispatch();
   const basicListGlobal = useSelector(state => state.infoReducer.basicList)
+  const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
+  const [isEdit, setIsEdit] = useState(false)
   const [markdownInput, setMarkdownInput] = useState("")
   const [returnedOut, setReturnedOut] = useState("")
   const [markdownType, setMarkdownType] = useState("")
@@ -43,10 +46,10 @@ function App() {
     setMarkdownInput("")
   }
   const displayComponent = (type) => {
-    console.log(type)
+    console.log('display', type)
     switch(type){
       case "Headings":
-        return <Headings />
+        return <Headings isEdit={isEdit} name={type} markdownFormActive={setMarkdownForm}/>
       default:
         return <>no form yet</>
     }
@@ -76,7 +79,7 @@ function App() {
     :
     <>no form</>
     }
-      <div dangerouslySetInnerHTML={{__html : returnedOut}}></div>
+      <DisplayPreviews />
     </>
   )
 }
