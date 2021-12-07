@@ -4,6 +4,8 @@ import {Form, Button, Col} from 'react-bootstrap';
 import Headings from './components/Headings';
 import { loadMarkdownBasic, loadMarkdownCheat } from './actions/apiAction';
 import DisplayPreviews from './components/DisplayPreviews';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 function App() {
   const dispatch = useDispatch();
@@ -46,10 +48,9 @@ function App() {
     setMarkdownInput("")
   }
   const displayComponent = (type) => {
-    console.log('display', type)
     switch(type){
       case "Headings":
-        return <Headings isEdit={isEdit} name={type} markdownFormActive={setMarkdownForm}/>
+        return <Headings name={type} markdownFormActive={setMarkdownForm}/>
       default:
         return <>no form yet</>
     }
@@ -65,13 +66,6 @@ function App() {
             return <option key={basicObj.name} value={basicObj.name}>{basicObj.name}</option>
           })}
         </select>
-        {basicListGlobal.map(basicObj => {
-            return <Form.Check onChange={(e)=>console.log(e.target.value)} value={basicObj.name} label={basicObj.name}/>
-          })}
-        
-        <textarea  rows="4" cols="50" value={markdownInput} onChange={e=>setMarkdownInput(e.target.value)}>
-        enter markdown</textarea>
-        <Button type="submit" onClick={e=>console.log(e.target)}>translate</Button>
       </Form>
       {(markdownForm) 
       ? 
@@ -79,7 +73,7 @@ function App() {
     :
     <>no form</>
     }
-      <DisplayPreviews />
+      <DisplayPreviews handleMarkdownFormState={setMarkdownForm}/>
     </>
   )
 }

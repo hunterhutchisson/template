@@ -27,9 +27,9 @@ const TextEmphasis = ({textEmphasis, setEmp}) => {
                         checked={boldChecked}
                         onChange={e=>{
                             if(e.target.checked){
-                                setEmp(textEmphasis-1)
+                                setEmp(textEmphasis-2)
                             }
-                            setEmp(textEmphasis+1)
+                            setEmp(textEmphasis+2)
                             setBoldChecked(!boldChecked)
                         }}
                     />
@@ -43,9 +43,9 @@ const TextEmphasis = ({textEmphasis, setEmp}) => {
                         checked={italicChecked}
                         onChange={e=>{
                             if(e.target.checked){
-                                setEmp(textEmphasis-2)
+                                setEmp(textEmphasis-1)
                             }
-                            setEmp(textEmphasis+2)
+                            setEmp(textEmphasis+1)
                             setItalicChecked(!italicChecked)
                         }}
                     />

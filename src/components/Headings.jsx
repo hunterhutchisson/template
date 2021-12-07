@@ -2,15 +2,15 @@ import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {Form, Button, Col} from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
-import { storeMarkdowns } from "../actions/markdownActions";
+import { storeMarkdowns, editMarkdown } from "../actions/markdownActions";
 import TextEmphasis from "./TextEmphasis";
 
-const Headings = ({isEdit, markdownFormActive, name}) => {
+const Headings = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
     const dispatch = useDispatch()
     const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
     const [currentlyChecked, setCurrentlyChecked] = useState(false)
-    const [headingSize, setHeadingSize] = useState(()=>isEdit ? markdownObjList.name:'')
-    const [textInput, setTextInput] = useState("")
+    const [headingSize, setHeadingSize] = useState("")
+    const [textInput, setTextInput] = useState(()=>markdownObjPassed ? markdownObjPassed.textInput:"")
     const [htmlOutput, setHtmlOutput] = useState("")
     const [combinedInput, setCombinedInput] = useState("")
     const [textEmphasis, setTextEmphasis] = useState(0)
@@ -29,7 +29,6 @@ const Headings = ({isEdit, markdownFormActive, name}) => {
     }
 
     const addHashtags = (amount, text, e, empVal) => {
-        console.log(empVal)
         // let checkbox = e.target.querySelector(`#inline-checkbox-${amount}`)
         // checkbox.checked = false
         let hashtags = ""
@@ -62,11 +61,9 @@ const Headings = ({isEdit, markdownFormActive, name}) => {
             default:
                 empText = text
         }
-        console.log(empText)
         return setCombinedInput(hashtags + " " + empText)
     }
     const fetchHTML = async (markdown) => {
-        console.log('inside render')
         let result = (await fetch('https://api.github.com/markdown', {
             method: 'POST',
             headers: {
@@ -87,15 +84,18 @@ const Headings = ({isEdit, markdownFormActive, name}) => {
         fetchHTML(combinedInput)
     }, [combinedInput])
     useEffect(() => {
+        let mdID = markdownObjPassed ? markdownObjPassed.id : uuidv4()
+        let mdName = markdownObjPassed ? markdownObjPassed.name : name
         let markdownObj = {
-            id: uuidv4(),
+            id: mdID,
             textInput,
             combinedInput,
             htmlOutput,
-            name
+            name: mdName,
+            edit: false
         }
         if(markdownObj.htmlOutput.length > 0){
-            dispatch(storeMarkdowns(markdownObj))
+            markdownObjPassed ? dispatch(editMarkdown(markdownObj)):dispatch(storeMarkdowns(markdownObj))
             markdownFormActive(false)
             setHeadingSize(0)
         }
@@ -173,7 +173,7 @@ const Headings = ({isEdit, markdownFormActive, name}) => {
                 </div>
                 <TextEmphasis textEmphasis={textEmphasis} setEmp={setTextEmphasis}/>
                 <input type="text" placeholder="Heading" value={textInput} onChange={e=>setTextInput(e.target.value)}/>
-                <button>submit</button>
+                <button>submit</button>                
         </Form>
     </>
     )

@@ -1,4 +1,4 @@
-import { SELECTED_MARKDOWNS } from "../actions/types"
+import { SELECTED_MARKDOWNS, EDIT_MARKDOWN_STATE, EDIT_MARKDOWN, DELETE_MARKDOWN } from "../actions/types"
 
 const initialState = {
     markdownObjList: []
@@ -10,6 +10,36 @@ const markdownReducer = (state=initialState, action) => {
             return {
                 ...state,
                 markdownObjList: [...state.markdownObjList, action.data]
+            }
+        case EDIT_MARKDOWN_STATE:
+            let newMarkdownObjStateList = [...state.markdownObjList]
+            newMarkdownObjStateList.map(object=>{
+                if(object.id === action.markdownObj.id){
+                    action.markdownObj.edit = !object.edit
+                }
+            })
+            return {
+                ...state,
+                markdownObjList: newMarkdownObjStateList
+            }
+        case EDIT_MARKDOWN:
+            let newMarkdownObjEditList = [...state.markdownObjList]
+            let swappedObjList = newMarkdownObjEditList.map(object=>{
+                if(object.id === action.markdownObj.id){
+                    console.log('true', action.markdownObj)
+                    return action.markdownObj
+                }
+                console.log('false')
+                return object
+            })
+            return {
+                ...state,
+                markdownObjList: swappedObjList
+            }
+        case DELETE_MARKDOWN:
+            return {
+                ...state,
+                markdownObjList: state.markdownObjList.filter(obj=> obj.id !== action.markdownObj.id),
             }
         default:
             return state

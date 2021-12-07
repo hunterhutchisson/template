@@ -10,7 +10,12 @@ import reducer from './reducers'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
-import Sample from './components/Sample';
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fab, fas)
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
@@ -21,7 +26,6 @@ ReactDOM.render(
         <BaseLayout>
           <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/sample" element={<Sample />} />
           </Routes>
         </BaseLayout>
       </Router>
