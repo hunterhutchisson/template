@@ -7,8 +7,9 @@ function Markdown() {
         let htmlBlock = ""
         list.forEach(item=>{
             htmlBlock += `
-${item.combinedInput}<br/>`
+${item.combinedInput}<br/><br/>`
         })
+        let codeBlock = `<pre><code>${htmlBlock}</code></pre>`
         return (
             <div dangerouslySetInnerHTML={{__html: htmlBlock}}></div>
         )

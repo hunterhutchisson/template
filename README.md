@@ -2,7 +2,10 @@
 brief website description
 ![website image or video](https://www.businessprocessincubator.com/wp-content/uploads/thumbnails/thumbnail-42864.png)
 ## Tech Stack
-- Languages: - Javascript - HTML - CSS
+- Languages:
+  - Javascript
+  - HTML
+  - CSS
 - APIs: - Google Maps API - Google Geocode API - WikiPedia, On this Day API - WikiPedia scrapes
 - Bootstrap - Flexbox - AJAX
 ## Minimum Viable Product (MVP)
@@ -20,3 +23,6 @@ description of base MVP
 [github account 2](https://github.com/)
 - Name1: - Role 1 - Role 2 - Role 3
 [github account 1](https://github.com/)
+
+# ex
+para

@@ -42,7 +42,10 @@ const Paragraph = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
             default:
                 empText = text
         }
-        return setCombinedInput(empText)
+        return setCombinedInput(`
+        
+${empText}
+`)
     }
     const fetchHTML = async (markdown) => {
         let result = (await fetch('https://api.github.com/markdown', {

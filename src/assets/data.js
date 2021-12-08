@@ -37,14 +37,14 @@ let templateList = [
   },
   {
     id: uuidv4(),
-    textInput: ` - Languages:
-    - Javascript
-    - HTML
-    - CSS`,
-    combinedInput:` - Languages:
-    - Javascript
-    - HTML
-    - CSS`,
+    textInput: ` - Languages:<br/> 
+    &nbsp;&nbsp;- Javascript<br/> 
+    &nbsp;&nbsp;- HTML<br/>
+    &nbsp;&nbsp;- CSS`,
+    combinedInput:` - Languages:<br/>
+    &nbsp;&nbsp;- Javascript<br/>
+    &nbsp;&nbsp;- HTML<br/>
+    &nbsp;&nbsp;- CSS`,
     htmlOutput: `<ul>
     <li>Languages:
     <ul>
