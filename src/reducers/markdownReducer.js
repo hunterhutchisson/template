@@ -26,10 +26,8 @@ const markdownReducer = (state=initialState, action) => {
             let newMarkdownObjEditList = [...state.markdownObjList]
             let swappedObjList = newMarkdownObjEditList.map(object=>{
                 if(object.id === action.markdownObj.id){
-                    console.log('true', action.markdownObj)
                     return action.markdownObj
                 }
-                console.log('false')
                 return object
             })
             return {

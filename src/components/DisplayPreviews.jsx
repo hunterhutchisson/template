@@ -3,6 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { switchToEdit, deleteMarkdown } from '../actions/markdownActions';
 import Headings from './Headings';
+import Code from './Code';
+import HorizontalRule from './HorizontalRule';
+import Paragraph from './Paragraph'
+import LineBreak from './LineBreak';
+import BlockQuote from './BlockQuote';
 
 
 const DisplayPreviews = ({handleMarkdownFormState}) => {
@@ -12,10 +17,20 @@ const DisplayPreviews = ({handleMarkdownFormState}) => {
 
     const displayEditComponent = (obj) => {
         switch(obj.name){
-          case "Headings":
-            return <Headings markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
-          default:
-            return <>no form yet</>
+            case "Headings":
+                return <Headings markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
+            case "Code":
+                return <Code markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
+            case "Horizontal Rules":
+                return <HorizontalRule markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
+            case "Paragraphs":
+                return <Paragraph markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
+            case "Line Breaks":
+                return <LineBreak markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
+            case "Blockquotes":
+                return <BlockQuote markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
+            default:
+                return <>no form yet</>
         }
 
       }

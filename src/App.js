@@ -1,10 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Form, Button, Col} from 'react-bootstrap';
 import Headings from './components/Headings';
+import Code from './components/Code';
+import HorizontalRule from './components/HorizontalRule';
+import Paragraph from './components/Paragraph';
+import LineBreak from './components/LineBreak';
+import BlockQuote from './components/BlockQuote';
 import { loadMarkdownBasic, loadMarkdownCheat } from './actions/apiAction';
 import DisplayPreviews from './components/DisplayPreviews';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 function App() {
@@ -51,6 +56,14 @@ function App() {
     switch(type){
       case "Headings":
         return <Headings name={type} markdownFormActive={setMarkdownForm}/>
+      case "Code":
+        return <Code name={type} markdownFormActive={setMarkdownForm}/>
+      case "Horizontal Rules":
+        return <HorizontalRule name={type} markdownFormActive={setMarkdownForm}/>
+      case "Paragraphs":
+        return <Paragraph name={type} markdownFormActive={setMarkdownForm}/>
+      case "Line Breaks":
+        return <LineBreak name={type} markdownFormActive={setMarkdownForm}/>
       default:
         return <>no form yet</>
     }
