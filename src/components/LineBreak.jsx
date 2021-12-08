@@ -15,7 +15,7 @@ const LineBreak = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
     const handleSubmitLineBreak = (e) => {
         e.preventDefault()
         setCombinedInput("")
-        setHtmlOutput("<br/><br/>")
+        setHtmlOutput("<br/>")
     }
     useEffect(() => {
         let mdID = markdownObjPassed ? markdownObjPassed.id : uuidv4()

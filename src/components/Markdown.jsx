@@ -9,14 +9,13 @@ function Markdown() {
             htmlBlock += `
 ${item.combinedInput}<br/>`
         })
-        console.log(htmlBlock)
         return (
             <div dangerouslySetInnerHTML={{__html: htmlBlock}}></div>
         )
     }
     return (
         <>
-            Preview page
+            Markdown page
             {displayMarkdown(markdownObjList)}
         </>
     )

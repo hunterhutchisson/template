@@ -1,4 +1,4 @@
-import { SELECTED_MARKDOWNS, EDIT_MARKDOWN_STATE, EDIT_MARKDOWN, DELETE_MARKDOWN } from "../actions/types"
+import { SELECTED_MARKDOWNS, EDIT_MARKDOWN_STATE, EDIT_MARKDOWN, DELETE_MARKDOWN, LOAD_TEMPLATE } from "../actions/types"
 
 const initialState = {
     markdownObjList: []
@@ -10,6 +10,11 @@ const markdownReducer = (state=initialState, action) => {
             return {
                 ...state,
                 markdownObjList: [...state.markdownObjList, action.data]
+            }
+        case LOAD_TEMPLATE:
+            return {
+                ...state,
+                markdownObjList: [...state.markdownObjList, ...action.data]
             }
         case EDIT_MARKDOWN_STATE:
             let newMarkdownObjStateList = [...state.markdownObjList]

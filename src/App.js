@@ -1,14 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Form, Button, Col} from 'react-bootstrap';
-import Headings from './components/Headings';
-import Code from './components/Code';
-import HorizontalRule from './components/HorizontalRule';
-import Paragraph from './components/Paragraph';
-import LineBreak from './components/LineBreak';
-import BlockQuote from './components/BlockQuote';
-import Image from './components/Image'
-import Link from './components/Link';
+import TemplateForm from './components/TemplateForm'
+import NonStructuredForm from './components/NonStructuredForm';
 import { loadMarkdownBasic, loadMarkdownCheat } from './actions/apiAction';
 import DisplayEditPreviews from './components/DisplayEditPreviews';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,6 +20,7 @@ function App() {
   const [cheatSheetList, setCheatSheetList] = useState([])
   const [markdownTextEmphasis, setMarkdownTextEmphasis] = useState(null)
   const [markdownForm, setMarkdownForm] = useState(null)
+  const [formTypeSelection, setFormTypeSelection] = useState(null)
 
   useEffect(() => {
     const basicSyntax = async () => {
@@ -49,29 +44,17 @@ function App() {
     dispatch(loadMarkdownCheat(cheatSheetList))
   }, [cheatSheetList])
  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('submit')
-    setMarkdownInput("")
-  }
-  const displayComponent = (type) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('submit')
+  //   setMarkdownInput("")
+  // }
+  const displayForms = (type) => {
     switch(type){
-      case "Headings":
-        return <Headings name={type} markdownFormActive={setMarkdownForm}/>
-      case "Code":
-        return <Code name={type} markdownFormActive={setMarkdownForm}/>
-      case "Horizontal Rules":
-        return <HorizontalRule name={type} markdownFormActive={setMarkdownForm}/>
-      case "Paragraphs":
-        return <Paragraph name={type} markdownFormActive={setMarkdownForm}/>
-      case "Line Breaks":
-        return <LineBreak name={type} markdownFormActive={setMarkdownForm}/>
-      case "Blockquotes":
-        return <BlockQuote name={type} markdownFormActive={setMarkdownForm}/>
-      case "Images":
-        return <Image name={type} markdownFormActive={setMarkdownForm}/>
-      case "Links":
-        return <Link name={type} markdownFormActive={setMarkdownForm}/>
+      case "nonstructured":
+        return <NonStructuredForm handleMarkdownFormState={setMarkdownForm}/>
+      case "template":
+        return <TemplateForm handleMarkdownFormState={setMarkdownForm}/>
       default:
         return <>no form yet</>
     }
@@ -80,21 +63,17 @@ function App() {
   return (
     <>
       App
-      <Form onSubmit={handleSubmit}>
-        <select defaultValue={markdownType} onChange={e=>setMarkdownForm(e.target.value)}>
-          <option hidden value="defaultValue">Pick a Type</option>
-          {basicList.map(basicObj => {
-            return <option key={basicObj.name} value={basicObj.name}>{basicObj.name}</option>
-          })}
-        </select>
-      </Form>
-      {(markdownForm) 
+
+      {(formTypeSelection) 
       ? 
-      <>{displayComponent(markdownForm)}</>
+      <>here {displayForms(formTypeSelection)}</>
     :
-    <></>
+    <>
+    <button onClick={()=>setFormTypeSelection("nonstructured")}>NonStructured</button>
+    <button onClick={()=>setFormTypeSelection("template")}>Template</button>
+    </>
     }
-      <DisplayEditPreviews handleMarkdownFormState={setMarkdownForm}/>
+
     </>
   )
 }
