@@ -29,10 +29,8 @@ const Headings = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
     }
 
     const addHashtags = (amount, text, e, empVal) => {
-        // let checkbox = e.target.querySelector(`#inline-checkbox-${amount}`)
-        // checkbox.checked = false
-        let hashtags = ""
-        for (let i = 1; i <= amount; i++) {
+        let hashtags = "#"
+        for (let i = 2; i <= amount; i++) {
             hashtags += "#"
         }
         let empText
@@ -81,7 +79,9 @@ const Headings = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
         addHashtags(headingSize, textInput, e, textEmphasis)
     }
     useEffect(() => {
-        fetchHTML(combinedInput)
+        if(combinedInput.length){
+            fetchHTML(combinedInput)
+        }
     }, [combinedInput])
     useEffect(() => {
         let mdID = markdownObjPassed ? markdownObjPassed.id : uuidv4()

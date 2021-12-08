@@ -56,12 +56,14 @@ const Paragraph = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
         let data = await result.text()
         setHtmlOutput(data);
     }
-    const handleSubmitCode = (e) => {
+    const handleSubmitParagraph = (e) => {
         e.preventDefault()
         addEmp(textInput, textEmphasis)
     }
     useEffect(() => {
-        fetchHTML(combinedInput)
+        if(combinedInput.length){
+            fetchHTML(combinedInput)
+        }
     }, [combinedInput])
     useEffect(() => {
         let mdID = markdownObjPassed ? markdownObjPassed.id : uuidv4()
@@ -83,10 +85,10 @@ const Paragraph = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
 
     return (
     <>
-        <Form onSubmit={handleSubmitCode}>
+        <Form onSubmit={handleSubmitParagraph}>
             <TextEmphasis textEmphasis={textEmphasis} setEmp={setTextEmphasis}/>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Example textarea</Form.Label>
+                <Form.Label>Enter Paragraph</Form.Label>
                 <Form.Control as="textarea" rows={3}  value={textInput} onChange={e=>setTextInput(e.target.value)}/>
             </Form.Group>
             <button>submit</button>                

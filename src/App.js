@@ -7,8 +7,10 @@ import HorizontalRule from './components/HorizontalRule';
 import Paragraph from './components/Paragraph';
 import LineBreak from './components/LineBreak';
 import BlockQuote from './components/BlockQuote';
+import Image from './components/Image'
+import Link from './components/Link';
 import { loadMarkdownBasic, loadMarkdownCheat } from './actions/apiAction';
-import DisplayPreviews from './components/DisplayPreviews';
+import DisplayEditPreviews from './components/DisplayEditPreviews';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -64,6 +66,12 @@ function App() {
         return <Paragraph name={type} markdownFormActive={setMarkdownForm}/>
       case "Line Breaks":
         return <LineBreak name={type} markdownFormActive={setMarkdownForm}/>
+      case "Blockquotes":
+        return <BlockQuote name={type} markdownFormActive={setMarkdownForm}/>
+      case "Images":
+        return <Image name={type} markdownFormActive={setMarkdownForm}/>
+      case "Links":
+        return <Link name={type} markdownFormActive={setMarkdownForm}/>
       default:
         return <>no form yet</>
     }
@@ -82,11 +90,11 @@ function App() {
       </Form>
       {(markdownForm) 
       ? 
-      <> here - {displayComponent(markdownForm)}</>
+      <>{displayComponent(markdownForm)}</>
     :
-    <>no form</>
+    <></>
     }
-      <DisplayPreviews handleMarkdownFormState={setMarkdownForm}/>
+      <DisplayEditPreviews handleMarkdownFormState={setMarkdownForm}/>
     </>
   )
 }

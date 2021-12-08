@@ -5,17 +5,18 @@ import { v4 as uuidv4 } from 'uuid';
 import { storeMarkdowns, editMarkdown } from "../actions/markdownActions";
 import TextEmphasis from "./TextEmphasis";
 
-const BlockQuote = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
+const Link = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
     const dispatch = useDispatch()
     const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
     const [currentlyChecked, setCurrentlyChecked] = useState(false)
-    const [headingSize, setHeadingSize] = useState("")
-    const [textInput, setTextInput] = useState(()=>markdownObjPassed ? markdownObjPassed.textInput:"")
+    const [altTextInput, setAltTextInput] = useState(()=>markdownObjPassed ? markdownObjPassed.altTextInput:"")
+    const [srcInput, setSrcInput] = useState(()=>markdownObjPassed ? markdownObjPassed.srcInput:"")
     const [htmlOutput, setHtmlOutput] = useState("")
     const [combinedInput, setCombinedInput] = useState("")
     const [textEmphasis, setTextEmphasis] = useState(0)
 
-    const addEmp = (text, empVal) => {
+    const combineURL = (altText, path, empVal) => {
+        let text = `[${altText}](${path})`
         let empText
         switch(empVal){
             case 1:
@@ -42,7 +43,7 @@ const BlockQuote = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
             default:
                 empText = text
         }
-        return setCombinedInput("> " + empText)
+        return setCombinedInput(empText)
     }
     const fetchHTML = async (markdown) => {
         let result = (await fetch('https://api.github.com/markdown', {
@@ -56,9 +57,9 @@ const BlockQuote = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
         let data = await result.text()
         setHtmlOutput(data);
     }
-    const handleSubmitCode = (e) => {
+    const handleSubmitLink = (e) => {
         e.preventDefault()
-        addEmp(textInput, textEmphasis)
+        combineURL(altTextInput, srcInput, textEmphasis)
     }
     useEffect(() => {
         if(combinedInput.length){
@@ -70,13 +71,14 @@ const BlockQuote = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
         let mdName = markdownObjPassed ? markdownObjPassed.name : name
         let markdownObj = {
             id: mdID,
-            textInput,
+            altTextInput,
+            srcInput,
             combinedInput,
             htmlOutput,
             name: mdName,
             edit: false
         }
-        if(markdownObj.textInput.length > 0){
+        if(markdownObj.htmlOutput.length > 0){
             markdownObjPassed ? dispatch(editMarkdown(markdownObj)):dispatch(storeMarkdowns(markdownObj))
             markdownFormActive(false)
         }
@@ -85,16 +87,20 @@ const BlockQuote = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
 
     return (
     <>
-        <Form onSubmit={handleSubmitCode}>
+        <Form onSubmit={handleSubmitLink}>
             <TextEmphasis textEmphasis={textEmphasis} setEmp={setTextEmphasis}/>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Enter Blockquotes:</Form.Label>
-                <Form.Control as="textarea" rows={3}  value={textInput} onChange={e=>setTextInput(e.target.value)}/>
+            <Form.Group className="mb-3">
+                <Form.Label>URL</Form.Label>
+                <Form.Control type="text" placeholder="URL" value={srcInput} onChange={e=>setSrcInput(e.target.value)}/>
             </Form.Group>
-            <button>submit</button>                
+            <Form.Group className="mb-3">
+                <Form.Label>AltText</Form.Label>
+                <Form.Control type="text" placeholder="AltText" value={altTextInput} onChange={e=>setAltTextInput(e.target.value)}/>
+            </Form.Group>
+            <button>submit</button> 
         </Form>
     </>
     )
 }
 
-export default BlockQuote
+export default Link

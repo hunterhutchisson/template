@@ -12,7 +12,7 @@ const LineBreak = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
     const [htmlOutput, setHtmlOutput] = useState("")
     const [combinedInput, setCombinedInput] = useState("")
 
-    const handleSubmitCode = (e) => {
+    const handleSubmitLineBreak = (e) => {
         e.preventDefault()
         setCombinedInput("")
         setHtmlOutput("<br/><br/>")
@@ -38,7 +38,7 @@ const LineBreak = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
     return (
     <>  
     To add line break, put spaces before you press enter to next line (like in a paragraph). Line break is different than adding a blank line
-        <Form onSubmit={handleSubmitCode}>
+        <Form onSubmit={handleSubmitLineBreak}>
             <button>add blank link</button>                
         </Form>
     </>

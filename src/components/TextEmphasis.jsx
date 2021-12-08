@@ -9,11 +9,6 @@ const TextEmphasis = ({textEmphasis, setEmp}) => {
     const [boldChecked, setBoldChecked] = useState(false)
     const [italicChecked, setItalicChecked] = useState(false)
     const [strikeChecked, setStrikeChecked] = useState(false)
-    // useEffect(() => {
-    //     setBoldChecked(false)
-    //     setItalicChecked(false)
-    //     setStrikeChecked(false)
-    // }, [markdownObjList])
     return (
         <div>
             <div key="inline-checkbox" className="mb-3" id="textEmphasis">

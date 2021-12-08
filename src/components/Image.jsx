@@ -5,44 +5,18 @@ import { v4 as uuidv4 } from 'uuid';
 import { storeMarkdowns, editMarkdown } from "../actions/markdownActions";
 import TextEmphasis from "./TextEmphasis";
 
-const BlockQuote = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
+const Paragraph = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
     const dispatch = useDispatch()
     const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
     const [currentlyChecked, setCurrentlyChecked] = useState(false)
-    const [headingSize, setHeadingSize] = useState("")
-    const [textInput, setTextInput] = useState(()=>markdownObjPassed ? markdownObjPassed.textInput:"")
+    const [altTextInput, setAltTextInput] = useState(()=>markdownObjPassed ? markdownObjPassed.altTextInput:"")
+    const [srcInput, setSrcInput] = useState(()=>markdownObjPassed ? markdownObjPassed.srcInput:"")
     const [htmlOutput, setHtmlOutput] = useState("")
     const [combinedInput, setCombinedInput] = useState("")
     const [textEmphasis, setTextEmphasis] = useState(0)
 
-    const addEmp = (text, empVal) => {
-        let empText
-        switch(empVal){
-            case 1:
-                empText = "*"+text+"*"
-                break
-            case 2:
-                empText = "**"+text+"**"
-                break
-            case 3:
-                empText = "***"+text+"***"
-                break
-            case 4:
-                empText = "~~"+text+"~~"
-                break
-            case 5:
-                empText = "~~*"+text+"*~~"
-                break
-            case 6:
-                empText = "~~**"+text+"**~~"
-                break
-            case 7:
-                empText = "~~***"+text+"***~~"
-                break
-            default:
-                empText = text
-        }
-        return setCombinedInput("> " + empText)
+    const combineImg = (altText, path) => {
+        return setCombinedInput(`![${altText}](${path})`)
     }
     const fetchHTML = async (markdown) => {
         let result = (await fetch('https://api.github.com/markdown', {
@@ -56,9 +30,9 @@ const BlockQuote = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
         let data = await result.text()
         setHtmlOutput(data);
     }
-    const handleSubmitCode = (e) => {
+    const handleSubmitImage = (e) => {
         e.preventDefault()
-        addEmp(textInput, textEmphasis)
+        combineImg(altTextInput, srcInput)
     }
     useEffect(() => {
         if(combinedInput.length){
@@ -70,13 +44,14 @@ const BlockQuote = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
         let mdName = markdownObjPassed ? markdownObjPassed.name : name
         let markdownObj = {
             id: mdID,
-            textInput,
+            altTextInput,
+            srcInput,
             combinedInput,
             htmlOutput,
             name: mdName,
             edit: false
         }
-        if(markdownObj.textInput.length > 0){
+        if(markdownObj.htmlOutput.length > 0){
             markdownObjPassed ? dispatch(editMarkdown(markdownObj)):dispatch(storeMarkdowns(markdownObj))
             markdownFormActive(false)
         }
@@ -85,16 +60,19 @@ const BlockQuote = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
 
     return (
     <>
-        <Form onSubmit={handleSubmitCode}>
-            <TextEmphasis textEmphasis={textEmphasis} setEmp={setTextEmphasis}/>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Enter Blockquotes:</Form.Label>
-                <Form.Control as="textarea" rows={3}  value={textInput} onChange={e=>setTextInput(e.target.value)}/>
+        <Form onSubmit={handleSubmitImage}>
+            <Form.Group className="mb-3">
+                <Form.Label>Path or URL</Form.Label>
+                <Form.Control type="text" placeholder="Path or URL" value={srcInput} onChange={e=>setSrcInput(e.target.value)}/>
             </Form.Group>
-            <button>submit</button>                
+            <Form.Group className="mb-3">
+                <Form.Label>AltText</Form.Label>
+                <Form.Control type="text" placeholder="AltText" value={altTextInput} onChange={e=>setAltTextInput(e.target.value)}/>
+            </Form.Group>
+            <button>submit</button> 
         </Form>
     </>
     )
 }
 
-export default BlockQuote
+export default Paragraph

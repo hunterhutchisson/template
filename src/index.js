@@ -10,6 +10,8 @@ import reducer from './reducers'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
+import Preview from './components/Preview';
+import Markdown from './components/Markdown';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -26,6 +28,8 @@ ReactDOM.render(
         <BaseLayout>
           <Routes>
             <Route path="/" element={<App />} />
+            <Route path="/preview" element={<Preview />} />
+            <Route path="/markdown" element={<Markdown />} />
           </Routes>
         </BaseLayout>
       </Router>

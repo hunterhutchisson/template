@@ -12,7 +12,7 @@ const HorizontalRule = ({isEdit, markdownFormActive, name, markdownObjPassed}) =
     const [htmlOutput, setHtmlOutput] = useState("")
     const [combinedInput, setCombinedInput] = useState("")
 
-    const handleSubmitCode = (e) => {
+    const handleSubmitHorizontalRule = (e) => {
         e.preventDefault()
         setCombinedInput("---")
         setHtmlOutput("<hr/>")
@@ -37,7 +37,7 @@ const HorizontalRule = ({isEdit, markdownFormActive, name, markdownObjPassed}) =
 
     return (
     <>
-        <Form onSubmit={handleSubmitCode}>
+        <Form onSubmit={handleSubmitHorizontalRule}>
             <button>add horizontal rule</button>                
         </Form>
     </>

@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { switchToEdit, deleteMarkdown } from '../actions/markdownActions';
 import Headings from './Headings';
 import Code from './Code';
 import HorizontalRule from './HorizontalRule';
-import Paragraph from './Paragraph'
+import Paragraph from './Paragraph';
 import LineBreak from './LineBreak';
 import BlockQuote from './BlockQuote';
+import Image from './Image';
+import Link from './Link';
 
 
 const DisplayPreviews = ({handleMarkdownFormState}) => {
@@ -29,11 +31,15 @@ const DisplayPreviews = ({handleMarkdownFormState}) => {
                 return <LineBreak markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
             case "Blockquotes":
                 return <BlockQuote markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
+            case "Images":
+                return <Image markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
+            case "Links":
+                return <Link markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
             default:
                 return <>no form yet</>
         }
-
-      }
+    }
+    
     return (
         <>
             {markdownObjList.map(markdownObj=>{
