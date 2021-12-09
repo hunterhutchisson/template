@@ -10,6 +10,7 @@ import LineBreak from './LineBreak';
 import BlockQuote from './BlockQuote';
 import Image from './Image';
 import Link from './Link';
+import UnOrderedList from './UnOrderedList'
 
 
 const TemplateForm = () => {
@@ -39,6 +40,8 @@ const TemplateForm = () => {
                 return <Image name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
             case "Links":
                 return <Link name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
+            case "Unordered Lists":
+                return <UnOrderedList name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
             default:
                 return <>no form yet</>
         }

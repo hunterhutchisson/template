@@ -10,6 +10,7 @@ import LineBreak from './LineBreak';
 import BlockQuote from './BlockQuote';
 import Image from './Image';
 import Link from './Link';
+import UnOrderedList from './UnOrderedList';
 
 
 const DisplayPreviews = ({handleMarkdownFormState}) => {
@@ -35,6 +36,8 @@ const DisplayPreviews = ({handleMarkdownFormState}) => {
                 return <Image markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
             case "Links":
                 return <Link markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
+            case "Unordered Lists":
+                return <UnOrderedList markdownObjPassed={obj} markdownFormActive={handleMarkdownFormState}/>
             default:
                 return <>no form yet</>
         }
