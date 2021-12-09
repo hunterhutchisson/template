@@ -37,14 +37,11 @@ let templateList = [
   },
   {
     id: uuidv4(),
-    textInput: ` - Languages:<br/> 
-    &nbsp;&nbsp;- Javascript<br/> 
-    &nbsp;&nbsp;- HTML<br/>
-    &nbsp;&nbsp;- CSS`,
-    combinedInput:` - Languages:<br/>
-    &nbsp;&nbsp;- Javascript<br/>
-    &nbsp;&nbsp;- HTML<br/>
-    &nbsp;&nbsp;- CSS`,
+    textInput: ``,
+    combinedInput:`- Languages:<br/>
+&nbsp;&nbsp;- Javascript<br/>
+&nbsp;&nbsp;- HTML<br/>
+&nbsp;&nbsp;- CSS<br/>`,
     htmlOutput: `<ul>
     <li>Languages:
     <ul>
@@ -54,94 +51,114 @@ let templateList = [
     </ul>
     </li>
     </ul> `,
-    name: "Paragraphs",
-    nested: true,
+    name: "Unordered Lists",
+    listItems: [{
+      id: uuidv4(),
+      itemTextForMarkdown:"- Languages:<br/>",
+      itemTextForFetch:"- Languages:",
+      itemTextInput:"Languages:",
+      nested:false
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- Javascript<br/>",
+      itemTextForFetch:" - Javascript",
+      itemTextInput:"Javascript",
+      nested:true
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- HTML<br/>",
+      itemTextForFetch:" - HTML",
+      itemTextInput:"HTML",
+      nested:true
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- CSS<br/>",
+      itemTextForFetch:" - CSS",
+      itemTextInput:"CSS",
+      nested:true
+    },
+
+  ],
     edit: false
   },
   {
     id: uuidv4(),
-    textInput: `- APIs:
-    - Google Maps API
-    - Google Geocode API
-    - WikiPedia, On this Day API
-    - WikiPedia scrapes`,
-    combinedInput:`- APIs:
-    - Google Maps API
-    - Google Geocode API
-    - WikiPedia, On this Day API
-    - WikiPedia scrapes`,
+    textInput: ``,
+    combinedInput:`- APIs:<br/>
+&nbsp;&nbsp;- API 1<br/>
+&nbsp;&nbsp;- API 2<br/>`,
     htmlOutput: `<ul>
     <li>APIs:
     <ul>
-    <li>Google Maps API</li>
-    <li>Google Geocode API</li>
-    <li>WikiPedia, On this Day API</li>
-    <li>WikiPedia scrapes</li>
+    <li>API 1</li>
+    <li>API 2</li>
     </ul>
     </li>
-    </ul>`,
-    name: "Paragraphs",
-    nested: true,
+    </ul> `,
+    name: "Unordered Lists",
+    listItems: [{
+      id: uuidv4(),
+      itemTextForMarkdown:"- APIs:<br/>",
+      itemTextForFetch:"- APIs:",
+      itemTextInput:"APIs:",
+      nested:false
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- API 1<br/>",
+      itemTextForFetch:" - API 1",
+      itemTextInput:"API 1",
+      nested:true
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- API 2<br/>",
+      itemTextForFetch:" - API 2",
+      itemTextInput:"API 2",
+      nested:true
+    },
+
+  ],
     edit: false
   },
   {
     id: uuidv4(),
-    textInput: `- Bootstrap
-- Flexbox
-- AJAX`,
-    combinedInput:`- Bootstrap
-- Flexbox
-- AJAX`,
+    textInput: ``,
+    combinedInput:`- Bootstrap<br/>
+- Flexbox<br/>
+- AJAX<br/>`,
     htmlOutput: `<ul>
     <li>Bootstrap</li>
     <li>Flexbox</li>
     <li>AJAX</li>
-    </ul>`,
-    name: "Paragraphs",
-    nested: false,
-    edit: false
-  },
-  {
-    id: uuidv4(),
-    textInput: "Minimum Viable Product (MVP)",
-    combinedInput: "## Minimum Viable Product (MVP)",
-    htmlOutput: `<h2>
-    <a id="user-content-minimum-viable-product" class="anchor" href="#minimum-viable-product" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Minimum Viable Product</h2> `,
-    name: "Headings",
-    edit: false
-  },
-  {
-    id: uuidv4(),
-    textInput: "description of base MVP",
-    combinedInput: "description of base MVP",
-    htmlOutput: `<p>description of base MVP</p> `,
-    name: "Paragraphs",
-    edit: false
-  },
-  {
-    id: uuidv4(),
-    textInput: "Stretch Goals",
-    combinedInput: "## Stretch Goals",
-    htmlOutput: `<h2>
-    <a id="user-content-stretch-goals" class="anchor" href="#stretch-goals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Stretch Goals</h2> `,
-    name: "Headings",
-    edit: false
-  },
-  {
-    id: uuidv4(),
-    textInput: `- stretch goal 1
-- stretch goal 2
-- stretch goal 3`,
-    combinedInput:`- stretch goal 1
-- stretch goal 2
-- stretch goal 3`,
-    htmlOutput: `<ul>
-    <li>stretch goal 1</li>
-    <li>stretch goal 2</li>
-    <li>stretch goal 3</li>
-    </ul>`,
-    name: "Paragraphs",
-    nested: false,
+    </ul> `,
+    name: "Unordered Lists",
+    listItems: [{
+      id: uuidv4(),
+      itemTextForMarkdown:"- Bootstrap<br/>",
+      itemTextForFetch:"- Bootstrap",
+      itemTextInput:"Bootstrap",
+      nested:false
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- Flexbox<br/>",
+      itemTextForFetch:" - Flexbox",
+      itemTextInput:"Flexbox",
+      nested:true
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- AJAX<br/>",
+      itemTextForFetch:" - AJAX",
+      itemTextInput:"AJAX",
+      nested:true
+    },
+
+  ],
     edit: false
   },
   {
@@ -269,59 +286,45 @@ function sum(arrayNums){
   },
   {
     id: uuidv4(),
-    textInput: `- Name2:
-    - Role 1
-    - Role 2
-    - Role 3`,
-    combinedInput:`- Name2:
-    - Role 1
-    - Role 2
-    - Role 3`,
+    textInput: ``,
+    combinedInput:`- Name 1:<br/>
+&nbsp;&nbsp;- Role 1<br/>
+&nbsp;&nbsp;- Role 2<br/>`,
     htmlOutput: `<ul>
-    <li>Name2:
+    <li>Name 1:
     <ul>
     <li>Role 1</li>
     <li>Role 2</li>
-    <li>Role 3</li>
     </ul>
     </li>
-    </ul>`,
-    name: "Paragraphs",
-    nested: true,
+    </ul> `,
+    name: "Unordered Lists",
+    listItems: [{
+      id: uuidv4(),
+      itemTextForMarkdown:"- Name 1:<br/>",
+      itemTextForFetch:"- Name 1:",
+      itemTextInput:"Name 1:",
+      nested:false
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- Role 1<br/>",
+      itemTextForFetch:" - Role 1",
+      itemTextInput:"Role 1",
+      nested:true
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- Role 2<br/>",
+      itemTextForFetch:" - Role 2",
+      itemTextInput:"Role 2",
+      nested:true
+    },
+
+  ],
     edit: false
   },
-  {
-    id: uuidv4(),
-    altTextInput: "github account 2",
-    srcInput: "https://github.com/",
-    combinedInput: "[github account 2](https://github.com/)",
-    htmlOutput: `<p><a href="https://github.com/">github account 2</a></p> `,
-    name: "Links",
-    edit: false
-  },
-  {
-    id: uuidv4(),
-    textInput: `- Name1:
-    - Role 1
-    - Role 2
-    - Role 3`,
-    combinedInput:`- Name1:
-    - Role 1
-    - Role 2
-    - Role 3`,
-    htmlOutput: `<ul>
-    <li>Name1:
-    <ul>
-    <li>Role 1</li>
-    <li>Role 2</li>
-    <li>Role 3</li>
-    </ul>
-    </li>
-    </ul>`,
-    name: "Paragraphs",
-    nested: true,
-    edit: false
-  },
+
   {
     id: uuidv4(),
     altTextInput: "github account 1",
@@ -331,6 +334,57 @@ function sum(arrayNums){
     name: "Links",
     edit: false
   },
+  {
+    id: uuidv4(),
+    textInput: ``,
+    combinedInput:`- Name 2:<br/>
+&nbsp;&nbsp;- Role 1<br/>
+&nbsp;&nbsp;- Role 2<br/>`,
+    htmlOutput: `<ul>
+    <li>Name 2:
+    <ul>
+    <li>Role 1</li>
+    <li>Role 2</li>
+    </ul>
+    </li>
+    </ul> `,
+    name: "Unordered Lists",
+    listItems: [{
+      id: uuidv4(),
+      itemTextForMarkdown:"- Name 2:<br/>",
+      itemTextForFetch:"- Name 2:",
+      itemTextInput:"Name 2:",
+      nested:false
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- Role 1<br/>",
+      itemTextForFetch:" - Role 1",
+      itemTextInput:"Role 1",
+      nested:true
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"&nbsp;&nbsp;- Role 2<br/>",
+      itemTextForFetch:" - Role 2",
+      itemTextInput:"Role 2",
+      nested:true
+    },
+
+  ],
+    edit: false
+  },
+
+  {
+    id: uuidv4(),
+    altTextInput: "github account 2",
+    srcInput: "https://github.com/",
+    combinedInput: "[github account 2](https://github.com/)",
+    htmlOutput: `<p><a href="https://github.com/">github account 2</a></p> `,
+    name: "Links",
+    edit: false
+  },
+  
 ];
 
 export default templateList;

@@ -4,9 +4,10 @@ import {Form, Button, Col} from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import { storeMarkdowns, editMarkdown } from "../actions/markdownActions";
 import TextEmphasis from "./TextEmphasis";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-const ListItem = ({item, setListItems, listItems}) => {
+const ListItem = ({item, setListItems, listItems, orderType, index}) => {
     const dispatch = useDispatch()
     const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
     const [currentlyChecked, setCurrentlyChecked] = useState(()=>item ? item.nested:false)
@@ -14,53 +15,59 @@ const ListItem = ({item, setListItems, listItems}) => {
     const [combinedInput, setCombinedInput] = useState("")
     const [textEmphasis, setTextEmphasis] = useState(0)
 
-    const addEmp = (text, empVal, checked) => {
+    const addEmp = (text, empVal, checked, type) => {
         let empText
         let mdEmpText
         let fetchEmpText
         switch(empVal){
             case 1:
-                empText = "- *"+text+"*"
+                empText = "*"+text+"*"
                 break
             case 2:
-                empText = "- **"+text+"**"
+                empText = "**"+text+"**"
                 break
             case 3:
-                empText = "- ***"+text+"***"
+                empText = "***"+text+"***"
                 break
             case 4:
-                empText = "- ~~"+text+"~~"
+                empText = "~~"+text+"~~"
                 break
             case 5:
-                empText = "- ~~*"+text+"*~~"
+                empText = "~~*"+text+"*~~"
                 break
             case 6:
-                empText = "- ~~**"+text+"**~~"
+                empText = "~~**"+text+"**~~"
                 break
             case 7:
-                empText = "- ~~***"+text+"***~~"
+                empText = "~~***"+text+"***~~"
                 break
             default:
-                empText = "- "+text
+                empText = text
         }
 
-        if(checked){
-            mdEmpText = "&nbsp;&nbsp;"+empText+"<br/>"
-            fetchEmpText = "  "+empText
+        if(checked && (type === "unordered")){
+            mdEmpText = "&nbsp;&nbsp;- "+empText+"<br/>"
+            fetchEmpText = "  - "+empText
+        } else if(checked && (type === "ordered")){
+            mdEmpText = "&nbsp;&nbsp;&nbsp;&nbsp;1. "+empText+"<br/>"
+            fetchEmpText = "    1. "+empText
+        } else if(type === "unordered"){
+            mdEmpText = "- "+empText+"<br/>"
+            fetchEmpText = "- "+empText
         }
         else{
-            mdEmpText = empText+"<br/>"
-            fetchEmpText = empText
+            mdEmpText = "1. "+empText+"<br/>"
+            fetchEmpText = "1. "+empText
         }
         return {
             itemTextForMarkdown: mdEmpText,
             itemTextForFetch: fetchEmpText
         }
     }
-    const handleSetList = (e) => {
-        e.preventDefault()
-        let itemTextObj = addEmp(itemTextInput, textEmphasis, currentlyChecked)
+    const handleSetListAdd = () => {
+        let itemTextObj = addEmp(itemTextInput, textEmphasis, currentlyChecked, orderType)
         let obj = {
+            id: uuidv4(),
             itemTextForMarkdown: itemTextObj.itemTextForMarkdown,
             itemTextForFetch: itemTextObj.itemTextForFetch,
             itemTextInput,
@@ -68,20 +75,60 @@ const ListItem = ({item, setListItems, listItems}) => {
         } 
         setListItems([...listItems, obj])
         setItemTextInput("")
+        setTextEmphasis(0)
     }
-
+    const handleSetListEdit = (list, itemObj) => {
+        let copyList = [...list]
+        let itemTextObj = addEmp(itemTextInput, textEmphasis, currentlyChecked, orderType)
+        itemObj = {
+            id: itemObj.id,
+            itemTextForMarkdown: itemTextObj.itemTextForMarkdown,
+            itemTextForFetch: itemTextObj.itemTextForFetch,
+            itemTextInput,
+            nested: currentlyChecked
+        } 
+        let newList = copyList.map(item => {
+            if(item.id === itemObj.id){
+                return itemObj
+            }
+            return item
+        })
+        setListItems(newList)
+    }
+    const handleSetListDelete = (list, itemObj) => {
+        let copyList = [...list]
+        console.log(copyList)
+        console.log(itemObj)
+        let newList = copyList.filter(item => item.id !== itemObj.id)
+        console.log(newList)
+        setListItems(newList)
+    }
     return (
         <>
-            <Form onSubmit={handleSetList}>
+            <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Enter List Item</Form.Label>
+                {item
+                ?
                 <TextEmphasis textEmphasis={textEmphasis} setEmp={setTextEmphasis}/>
-                <Form.Check label="nested item" checked={currentlyChecked} onChange={()=>setCurrentlyChecked(!currentlyChecked)}/>
+                :
+                null
+                }
+                {(index !== 0) ? <Form.Check label="nested item" checked={currentlyChecked} onChange={()=>setCurrentlyChecked(!currentlyChecked)}/>:null}
                 <Form.Control type="text" placeholder="List Item (leave last item blank and don't add to list)" value={itemTextInput} onChange={e=>setItemTextInput(e.target.value)}/>
-                {item ? <>item present</>:<button>add to list</button>}
                 
             </Form.Group>
             </Form>
+                {item 
+                ? 
+                <>
+                <button className="button btn" onClick={()=>handleSetListEdit(listItems, item)}>
+                    <FontAwesomeIcon icon={["fas", "save"]} color="gray" />
+                </button>
+                </>
+                :
+                <button onClick={()=>handleSetListAdd()}>add to list</button>
+                }
         </>
     )
 }

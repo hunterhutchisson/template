@@ -6,7 +6,7 @@ import { storeMarkdowns, editMarkdown } from "../actions/markdownActions";
 import ListItem from "./ListItem";
 import TextEmphasis from "./TextEmphasis";
 
-const UnorderedList = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
+const OrderedList = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
     const dispatch = useDispatch()
     const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
     const [currentlyChecked, setCurrentlyChecked] = useState(false)
@@ -29,7 +29,7 @@ const UnorderedList = ({isEdit, markdownFormActive, name, markdownObjPassed}) =>
         let data = await result.text()
         setHtmlOutput(data);
     }
-    const handleSubmitUnOrdered =  () => {
+    const handleSubmitOrdered =  () => {
         let assembledFetch =``
         let assembledCombined=``
         listItems.forEach(item=>{
@@ -78,20 +78,20 @@ ${item.itemTextForFetch}`
         <>
         {listItems.map((item, index)=>{
             return (<>
-            <ListItem listItems={listItems} setListItems={setListItems} item={item} orderType="unordered" index={index}/>
+            <ListItem listItems={listItems} setListItems={setListItems} item={item} orderType="ordered" index={index}/>
             {/* <button onClick={()=>handleDeleteItem(item)}>delete item</button> */}
             </>)
         })}
-        <ListItem listItems={listItems} setListItems={setListItems} orderType="unordered"/>
+        <ListItem listItems={listItems} setListItems={setListItems} orderType="ordered"/>
         </>
         :
-        <ListItem listItems={listItems} setListItems={setListItems} orderType="unordered" index={0}/>
+        <ListItem listItems={listItems} setListItems={setListItems} orderType="ordered" index={0}/>
         }
         <br />
-        <button onClick={()=>handleSubmitUnOrdered()}>submit</button>
+        <button onClick={()=>handleSubmitOrdered()}>submit</button>
         {(listItems.length > 0) ? <button onClick={()=>handleDeleteLastItem()}>delete last item</button>:null}
     </>
     )
 }
 
-export default UnorderedList
+export default OrderedList

@@ -7,9 +7,10 @@ import HorizontalRule from './HorizontalRule';
 import Paragraph from './Paragraph';
 import LineBreak from './LineBreak';
 import BlockQuote from './BlockQuote';
-import Image from './Image'
+import Image from './Image';
 import Link from './Link';
 import UnOrderedList from './UnOrderedList';
+import OrderedList from './OrderedList';
 import { loadMarkdownBasic, loadMarkdownCheat } from '../actions/apiAction';
 import DisplayEditPreviews from './DisplayEditPreviews';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -53,6 +54,8 @@ function NonStructuredForm() {
         return <Link name={type} markdownFormActive={setMarkdownForm}/>
       case "Unordered Lists":
         return <UnOrderedList name={type} markdownFormActive={setMarkdownForm}/>
+      case "Ordered Lists":
+        return <OrderedList name={type} markdownFormActive={setMarkdownForm}/>
       default:
         return <>no form yet</>
     }

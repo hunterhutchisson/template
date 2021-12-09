@@ -11,6 +11,7 @@ import BlockQuote from './BlockQuote';
 import Image from './Image';
 import Link from './Link';
 import UnOrderedList from './UnOrderedList'
+import OrderedList from './OrderedList'
 
 
 const TemplateForm = () => {
@@ -42,6 +43,8 @@ const TemplateForm = () => {
                 return <Link name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
             case "Unordered Lists":
                 return <UnOrderedList name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
+            case "Ordered Lists":
+                return <OrderedList name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
             default:
                 return <>no form yet</>
         }
