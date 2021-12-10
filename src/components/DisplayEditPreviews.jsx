@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { switchToEdit, deleteMarkdown } from '../actions/markdownActions';
@@ -12,6 +12,7 @@ import Image from './Image';
 import Link from './Link';
 import UnOrderedList from './UnOrderedList';
 import OrderedList from './OrderedList';
+
 
 
 const DisplayPreviews = ({handleMarkdownFormState}) => {

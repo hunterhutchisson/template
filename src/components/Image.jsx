@@ -1,43 +1,29 @@
 import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {Form, Button, Col} from 'react-bootstrap';
+import { useDispatch } from "react-redux";
+import {Form} from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import { storeMarkdowns, editMarkdown } from "../actions/markdownActions";
 import { editMarkdownTemplate } from "../actions/templateActions";
-import TextEmphasis from "./TextEmphasis";
+import { fetchHTML } from './utils'
 
-const Paragraph = ({isEdit, markdownFormActive, name, markdownObjPassed, overallForm}) => {
+const Paragraph = ({markdownFormActive, name, markdownObjPassed, overallForm}) => {
     const dispatch = useDispatch()
-    const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
-    const [currentlyChecked, setCurrentlyChecked] = useState(false)
     const [altTextInput, setAltTextInput] = useState(()=>markdownObjPassed ? markdownObjPassed.altTextInput:"")
     const [srcInput, setSrcInput] = useState(()=>markdownObjPassed ? markdownObjPassed.srcInput:"")
     const [htmlOutput, setHtmlOutput] = useState("")
     const [combinedInput, setCombinedInput] = useState("")
-    const [textEmphasis, setTextEmphasis] = useState(0)
 
     const combineImg = (altText, path) => {
         return setCombinedInput(`![${altText}](${path})`)
     }
-    const fetchHTML = async (markdown) => {
-        let result = (await fetch('https://api.github.com/markdown', {
-            method: 'POST',
-            headers: {
-                'authorization': "token " + process.env.REACT_APP_MYKEY,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({'mode': 'markdown', 'text': markdown})
-        }));
-        let data = await result.text()
-        setHtmlOutput(data);
-    }
+
     const handleSubmitImage = (e) => {
         e.preventDefault()
         combineImg(altTextInput, srcInput)
     }
     useEffect(() => {
         if(combinedInput.length){
-            fetchHTML(combinedInput)
+            fetchHTML(combinedInput, setHtmlOutput)
         }
     }, [combinedInput])
     useEffect(() => {

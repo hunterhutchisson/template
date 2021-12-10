@@ -1,11 +1,8 @@
-import React, {useState, useEffect} from "react";
-import { useSelector } from "react-redux";
-import {Form, Button, Col} from 'react-bootstrap';
+import React, {useState} from "react";
+import {Form} from 'react-bootstrap';
 
 
 const TextEmphasis = ({textEmphasis, setEmp}) => {
-    const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
-    let div = document.getElementById('textEmphasis')
     const [boldChecked, setBoldChecked] = useState(false)
     const [italicChecked, setItalicChecked] = useState(false)
     const [strikeChecked, setStrikeChecked] = useState(false)

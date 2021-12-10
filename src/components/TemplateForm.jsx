@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { switchToEditTemplate, deleteMarkdownTemplate, loadTemplate } from '../actions/templateActions';
+import { switchToEditTemplate, deleteMarkdownTemplate } from '../actions/templateActions';
 import Headings from './Headings';
 import Code from './Code';
 import HorizontalRule from './HorizontalRule';

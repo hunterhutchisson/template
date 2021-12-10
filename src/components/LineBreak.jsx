@@ -1,15 +1,12 @@
 import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {Form, Button, Col} from 'react-bootstrap';
+import { useDispatch } from "react-redux";
+import {Form} from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import { storeMarkdowns, editMarkdown } from "../actions/markdownActions";
 import { editMarkdownTemplate } from "../actions/templateActions";
-import TextEmphasis from "./TextEmphasis";
 
-const LineBreak = ({isEdit, markdownFormActive, name, markdownObjPassed, overallForm}) => {
+const LineBreak = ({markdownFormActive, name, markdownObjPassed, overallForm}) => {
     const dispatch = useDispatch()
-    const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
-    const [textInput, setTextInput] = useState(()=>markdownObjPassed ? markdownObjPassed.textInput:"")
     const [htmlOutput, setHtmlOutput] = useState("")
     const [combinedInput, setCombinedInput] = useState("")
 
@@ -18,12 +15,12 @@ const LineBreak = ({isEdit, markdownFormActive, name, markdownObjPassed, overall
         setCombinedInput("")
         setHtmlOutput("<br/>")
     }
+
     useEffect(() => {
         let mdID = markdownObjPassed ? markdownObjPassed.id : uuidv4()
         let mdName = markdownObjPassed ? markdownObjPassed.name : name
         let markdownObj = {
             id: mdID,
-            textInput,
             combinedInput,
             htmlOutput,
             name: mdName,

@@ -1,19 +1,13 @@
-import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {Form, Button, Col} from 'react-bootstrap';
+import React, {useState} from "react";
+import {Form} from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
-import { storeMarkdowns, editMarkdown } from "../actions/markdownActions";
-import { editMarkdownTemplate } from "../actions/templateActions";
 import TextEmphasis from "./TextEmphasis";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 const ListItem = ({item, setListItems, listItems, orderType, index, overallForm}) => {
-    const dispatch = useDispatch()
-    const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
     const [currentlyChecked, setCurrentlyChecked] = useState(()=>item ? item.nested:false)
     const [itemTextInput, setItemTextInput] = useState(()=>item ? item.itemTextInput:"")
-    const [combinedInput, setCombinedInput] = useState("")
     const [textEmphasis, setTextEmphasis] = useState(0)
 
     const addEmp = (text, empVal, checked, type) => {

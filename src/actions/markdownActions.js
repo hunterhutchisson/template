@@ -1,5 +1,4 @@
-import { SELECTED_MARKDOWNS, EDIT_MARKDOWN_STATE, EDIT_MARKDOWN, DELETE_MARKDOWN, LOAD_TEMPLATE } from "./types"
-import templateList from "../assets/data"
+import { SELECTED_MARKDOWNS, EDIT_MARKDOWN_STATE, EDIT_MARKDOWN, DELETE_MARKDOWN } from "./types"
 
 export const storeMarkdowns = (data) => {
     return {

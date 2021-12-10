@@ -16,8 +16,9 @@ const markdownReducer = (state=initialState, action) => {
             let newTemplateObjStateList = [...state.templateObjList]
             newTemplateObjStateList.map(object=>{
                 if(object.id === action.markdownObj.id){
-                    action.markdownObj.edit = !object.edit
+                    return action.markdownObj.edit = !object.edit
                 }
+                return object
             })
             return {
                 ...state,

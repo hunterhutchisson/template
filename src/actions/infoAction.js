@@ -1,10 +1,3 @@
-
-/**
- * multiple actions in this file
- * this is not a named export
- */
-
-
 import { LOAD_MARKDOWNS_BASIC, LOAD_MARKDOWNS_CHEAT, SWITCH_OVERALL_FORM } from "./types"
 
 export const loadMarkdownBasic = (basicList) => {
