@@ -1,26 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Form, Button, Col} from 'react-bootstrap';
 import TemplateForm from './components/TemplateForm'
 import NonStructuredForm from './components/NonStructuredForm';
-import { loadMarkdownBasic, loadMarkdownCheat } from './actions/apiAction';
-import DisplayEditPreviews from './components/DisplayEditPreviews';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { loadMarkdownBasic, loadMarkdownCheat, switchOverallForm } from './actions/infoAction';
 
 function App() {
   const dispatch = useDispatch();
-  const basicListGlobal = useSelector(state => state.infoReducer.basicList)
-  const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
-  const [isEdit, setIsEdit] = useState(false)
-  const [markdownInput, setMarkdownInput] = useState("")
-  const [returnedOut, setReturnedOut] = useState("")
-  const [markdownType, setMarkdownType] = useState("")
+  const overallFormState = useSelector(state => state.infoReducer.overallFormState)
   const [basicList, setBasicList] = useState([])
   const [cheatSheetList, setCheatSheetList] = useState([])
-  const [markdownTextEmphasis, setMarkdownTextEmphasis] = useState(null)
-  const [markdownForm, setMarkdownForm] = useState(null)
-  const [formTypeSelection, setFormTypeSelection] = useState(null)
 
   useEffect(() => {
     const basicSyntax = async () => {
@@ -43,18 +31,13 @@ function App() {
   useEffect(() => {
     dispatch(loadMarkdownCheat(cheatSheetList))
   }, [cheatSheetList])
- 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log('submit')
-  //   setMarkdownInput("")
-  // }
+
   const displayForms = (type) => {
     switch(type){
       case "nonstructured":
-        return <NonStructuredForm handleMarkdownFormState={setMarkdownForm}/>
+        return <NonStructuredForm overallForm={type}/>
       case "template":
-        return <TemplateForm handleMarkdownFormState={setMarkdownForm}/>
+        return <TemplateForm overallForm={type}/>
       default:
         return <>no form yet</>
     }
@@ -63,17 +46,9 @@ function App() {
   return (
     <>
       App
-
-      {(formTypeSelection) 
-      ? 
-      <>here {displayForms(formTypeSelection)}</>
-    :
-    <>
-    <button onClick={()=>setFormTypeSelection("nonstructured")}>NonStructured</button>
-    <button onClick={()=>setFormTypeSelection("template")}>Template</button>
-    </>
-    }
-
+      <button onClick={()=>dispatch(switchOverallForm("nonstructured"))}>NonStructured</button>
+      <button onClick={()=>dispatch(switchOverallForm("template"))}>Template</button>
+      <>here {displayForms(overallFormState)}</>
     </>
   )
 }

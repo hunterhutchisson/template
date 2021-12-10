@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { switchToEdit, deleteMarkdown, loadTemplate } from '../actions/markdownActions';
+import { switchToEditTemplate, deleteMarkdownTemplate, loadTemplate } from '../actions/templateActions';
 import Headings from './Headings';
 import Code from './Code';
 import HorizontalRule from './HorizontalRule';
@@ -14,33 +14,29 @@ import UnOrderedList from './UnOrderedList'
 import OrderedList from './OrderedList'
 
 
-const TemplateForm = () => {
+const TemplateForm = ({overallForm}) => {
     const dispatch = useDispatch();
-    const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
-    const [markdownHTMLCombined, setMarkdownHTMLCombined] = useState("")
+    const templateObjList = useSelector(state => state.templateReducer.templateObjList)
     const [markdownForm, setMarkdownForm] = useState(null)
-    useEffect(() => {
-        dispatch(loadTemplate())
-    }, [])
 
     const displayEditComponent = (obj) => {
         switch(obj.name){
             case "Headings":
-                return <Headings name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
+                return <Headings name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
             case "Code":
-                return <Code name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
+                return <Code name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
             case "Horizontal Rules":
-                return <HorizontalRule name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
+                return <HorizontalRule name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
             case "Paragraphs":
-                return <Paragraph name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
+                return <Paragraph name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
             case "Line Breaks":
-                return <LineBreak name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
+                return <LineBreak name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
             case "Blockquotes":
-                return <BlockQuote name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
+                return <BlockQuote name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
             case "Images":
-                return <Image name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
+                return <Image name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
             case "Links":
-                return <Link name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
+                return <Link name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
             case "Unordered Lists":
                 return <UnOrderedList name={obj.name} markdownObjPassed={obj} markdownFormActive={setMarkdownForm}/>
             case "Ordered Lists":
@@ -52,23 +48,23 @@ const TemplateForm = () => {
     
     return (
         <>
-            {markdownObjList.map(markdownObj=>{
+            {templateObjList.map(markdownObj=>{
                 return (<>
                 {((!markdownObj.edit) 
                 ?
                 <>
                 <div dangerouslySetInnerHTML={{__html: markdownObj.htmlOutput}}></div>
-                <button className="button btn" onClick={()=>dispatch(switchToEdit(markdownObj))}>
+                <button className="button btn" onClick={()=>dispatch(switchToEditTemplate(markdownObj))}>
                     <FontAwesomeIcon icon={["fas", "pencil-alt"]} color="gray" />
                 </button>
-                <button className="button btn" onClick={()=>dispatch(deleteMarkdown(markdownObj))}>
+                <button className="button btn" onClick={()=>dispatch(deleteMarkdownTemplate(markdownObj))}>
                     <FontAwesomeIcon icon={["fas", "trash"]} color="gray" />
                 </button>
                 </>
                 :
                 <>
                 {displayEditComponent(markdownObj)}
-                <button onClick={()=>dispatch(switchToEdit(markdownObj))}>cancel</button>
+                <button onClick={()=>dispatch(switchToEditTemplate(markdownObj))}>cancel</button>
                 </>
                 )}
                 </>)

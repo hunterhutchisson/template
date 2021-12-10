@@ -17,7 +17,6 @@ import OrderedList from './OrderedList';
 const DisplayPreviews = ({handleMarkdownFormState}) => {
     const dispatch = useDispatch();
     const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
-    const [markdownHTMLCombined, setMarkdownHTMLCombined] = useState("")
 
     const displayEditComponent = (obj) => {
         switch(obj.name){
@@ -54,6 +53,7 @@ const DisplayPreviews = ({handleMarkdownFormState}) => {
                 ?
                 <>
                 <div dangerouslySetInnerHTML={{__html: markdownObj.htmlOutput}}></div>
+
                 <button className="button btn" onClick={()=>dispatch(switchToEdit(markdownObj))}>
                     <FontAwesomeIcon icon={["fas", "pencil-alt"]} color="gray" />
                 </button>

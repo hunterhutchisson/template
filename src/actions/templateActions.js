@@ -1,14 +1,28 @@
+import { EDIT_MARKDOWN_STATE_TEMPLATE, EDIT_MARKDOWN_TEMPLATE, DELETE_MARKDOWN_TEMPLATE, LOAD_TEMPLATE } from "./types"
 
-/**
- * multiple actions in this file
- * this is not a named export
- */
 
-import { INCREMENT } from "./types"
-
-export const sampleAction = (sampleData) => {
+export const switchToEditTemplate = (obj) => {
     return {
-        type: INCREMENT,
-        data: sampleData
+        type: EDIT_MARKDOWN_STATE_TEMPLATE,
+        markdownObj: obj
     }
 }
+
+export const editMarkdownTemplate = (obj) => {
+    return {
+        type: EDIT_MARKDOWN_TEMPLATE,
+        markdownObj: obj
+    }
+}
+
+export const deleteMarkdownTemplate = (obj) => {
+    return {
+        type: DELETE_MARKDOWN_TEMPLATE,
+        markdownObj: obj
+    }
+}
+
+
+
+
+

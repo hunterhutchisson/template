@@ -172,7 +172,7 @@ let templateList = [
   },
   {
     id: uuidv4(),
-    textInput: "```js"+`
+    textInput: `
 // brief describe function
 function sum(arrayNums){
     let count = 0
@@ -183,7 +183,7 @@ function sum(arrayNums){
     return count   
 };
 //Written by Your Name
-`  + "```",
+`,
     combinedInput: "```js"+`
 // brief describe function
 function sum(arrayNums){
@@ -211,7 +211,7 @@ function sum(arrayNums){
   },
   {
     id: uuidv4(),
-    textInput: "```js"+`
+    textInput: `
 // brief describe function
 function sum(arrayNums){
     let count = 0
@@ -222,17 +222,17 @@ function sum(arrayNums){
     return count   
 };
 //Written by Your Name
-`  + "```",
-    combinedInput: "```js"+`
-// brief describe function
-function sum(arrayNums){
-    let count = 0
-    for(let i = 0; i < arrayNums.length; i++){
-      let num = arrayNums[i]
-      count += num
-    }
-    return count   
-};
+`,
+    combinedInput: "```js"+`  
+// brief describe function  
+function sum(arrayNums){  
+  let count = 0  
+for(let i = 0; i < arrayNums.length; i++){  
+  let num = arrayNums[i]  
+  count += num  
+  }  
+  return count  
+};  
 //Written by Your Name
 `  + "```",
     htmlOutput: `<div class="highlight highlight-source-js"><pre><span class="pl-c">// brief describe function</span>

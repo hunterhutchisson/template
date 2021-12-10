@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {Form, Button, Col} from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import { storeMarkdowns, editMarkdown } from "../actions/markdownActions";
+import { editMarkdownTemplate } from "../actions/templateActions";
 import TextEmphasis from "./TextEmphasis";
 
-const Paragraph = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
+const Paragraph = ({isEdit, markdownFormActive, name, markdownObjPassed, overallForm}) => {
     const dispatch = useDispatch()
     const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
     const [currentlyChecked, setCurrentlyChecked] = useState(false)
@@ -52,7 +53,7 @@ const Paragraph = ({isEdit, markdownFormActive, name, markdownObjPassed}) => {
             edit: false
         }
         if(markdownObj.htmlOutput.length > 0){
-            markdownObjPassed ? dispatch(editMarkdown(markdownObj)):dispatch(storeMarkdowns(markdownObj))
+            (markdownObjPassed ? ((overallForm === "template") ? dispatch((editMarkdownTemplate(markdownObj))):dispatch(editMarkdown(markdownObj))):dispatch(storeMarkdowns(markdownObj)))
             markdownFormActive(false)
         }
     }, [htmlOutput])

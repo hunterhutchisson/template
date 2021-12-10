@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {Form, Button, Col} from 'react-bootstrap';
+import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
+import {Form} from 'react-bootstrap';
 import Headings from './Headings';
 import Code from './Code';
 import HorizontalRule from './HorizontalRule';
@@ -11,22 +11,12 @@ import Image from './Image';
 import Link from './Link';
 import UnOrderedList from './UnOrderedList';
 import OrderedList from './OrderedList';
-import { loadMarkdownBasic, loadMarkdownCheat } from '../actions/apiAction';
 import DisplayEditPreviews from './DisplayEditPreviews';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-function NonStructuredForm() {
-  const dispatch = useDispatch();
+function NonStructuredForm({overallForm}) {
   const basicListGlobal = useSelector(state => state.infoReducer.basicList)
-  const markdownObjList = useSelector(state => state.markdownReducer.markdownObjList)
-  const [isEdit, setIsEdit] = useState(false)
   const [markdownInput, setMarkdownInput] = useState("")
-  const [returnedOut, setReturnedOut] = useState("")
   const [markdownType, setMarkdownType] = useState("")
-  const [basicList, setBasicList] = useState([])
-  const [cheatSheetList, setCheatSheetList] = useState([])
-  const [markdownTextEmphasis, setMarkdownTextEmphasis] = useState(null)
   const [markdownForm, setMarkdownForm] = useState(null)
 
   const handleSubmit = (e) => {
@@ -37,25 +27,25 @@ function NonStructuredForm() {
   const displayComponent = (type) => {
     switch(type){
       case "Headings":
-        return <Headings name={type} markdownFormActive={setMarkdownForm}/>
+        return <Headings name={type} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
       case "Code":
-        return <Code name={type} markdownFormActive={setMarkdownForm}/>
+        return <Code name={type} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
       case "Horizontal Rules":
-        return <HorizontalRule name={type} markdownFormActive={setMarkdownForm}/>
+        return <HorizontalRule name={type} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
       case "Paragraphs":
-        return <Paragraph name={type} markdownFormActive={setMarkdownForm}/>
+        return <Paragraph name={type} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
       case "Line Breaks":
-        return <LineBreak name={type} markdownFormActive={setMarkdownForm}/>
+        return <LineBreak name={type} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
       case "Blockquotes":
-        return <BlockQuote name={type} markdownFormActive={setMarkdownForm}/>
+        return <BlockQuote name={type} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
       case "Images":
-        return <Image name={type} markdownFormActive={setMarkdownForm}/>
+        return <Image name={type} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
       case "Links":
-        return <Link name={type} markdownFormActive={setMarkdownForm}/>
+        return <Link name={type} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
       case "Unordered Lists":
-        return <UnOrderedList name={type} markdownFormActive={setMarkdownForm}/>
+        return <UnOrderedList name={type} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
       case "Ordered Lists":
-        return <OrderedList name={type} markdownFormActive={setMarkdownForm}/>
+        return <OrderedList name={type} markdownFormActive={setMarkdownForm} overallForm={overallForm}/>
       default:
         return <>no form yet</>
     }
@@ -63,7 +53,6 @@ function NonStructuredForm() {
   
   return (
     <>
-      NonStructuredForm
       <Form onSubmit={handleSubmit}>
         <select defaultValue={markdownType} onChange={e=>setMarkdownForm(e.target.value)}>
           <option hidden value="defaultValue">Pick a Type</option>

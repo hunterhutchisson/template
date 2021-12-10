@@ -28,12 +28,7 @@ export const deleteMarkdown = (obj) => {
         markdownObj: obj
     }
 }
-export const loadTemplate = () => {
-    return {
-        type: LOAD_TEMPLATE,
-        data: templateList
-    }
-}
+
 
 
 
