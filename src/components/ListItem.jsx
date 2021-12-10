@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import TextEmphasis from "./TextEmphasis";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 const ListItem = ({item, setListItems, listItems, orderType, index, overallForm}) => {
     const [currentlyChecked, setCurrentlyChecked] = useState(()=>item ? item.nested:false)
     const [itemTextInput, setItemTextInput] = useState(()=>item ? item.itemTextInput:"")
@@ -92,10 +91,7 @@ const ListItem = ({item, setListItems, listItems, orderType, index, overallForm}
     }
     const handleSetListDelete = (list, itemObj) => {
         let copyList = [...list]
-        console.log(copyList)
-        console.log(itemObj)
         let newList = copyList.filter(item => item.id !== itemObj.id)
-        console.log(newList)
         setListItems(newList)
     }
     return (

@@ -21,7 +21,6 @@ function NonStructuredForm({overallForm}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit')
     setMarkdownInput("")
   }
   const displayComponent = (type) => {

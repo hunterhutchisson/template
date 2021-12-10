@@ -28,7 +28,6 @@ ${item.itemTextForFetch}`
     const handleDeleteItem = (itemObj) => {
         let copyListItems = [...listItems]
         let newList = copyListItems.filter(item=> item.id !== itemObj.id)
-        console.log(newList)
         setListItems(newList)
     }
     const handleDeleteLastItem = () => {

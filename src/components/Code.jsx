@@ -15,12 +15,8 @@ const Code = ({markdownFormActive, name, markdownObjPassed, overallForm}) => {
     const [combinedInput, setCombinedInput] = useState("")
 
     const isChecked = (checkedState, type, e) => {
-        console.log('check', checkedState)
-        console.log('type', type)
-        console.log('e', e.target.value)
         if(checkedState){
             if(e.target.value === type){
-                console.log('turning checked false')
                 setCurrentlyChecked(false)
             }
             e.target.checked = false
