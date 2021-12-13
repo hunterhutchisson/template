@@ -145,19 +145,55 @@ let templateList = [
     },
     {
       id: uuidv4(),
-      itemTextForMarkdown:"&nbsp;&nbsp;- Flexbox<br/>",
-      itemTextForFetch:" - Flexbox",
+      itemTextForMarkdown:"- Flexbox<br/>",
+      itemTextForFetch:"- Flexbox",
       itemTextInput:"Flexbox",
-      nested:true
+      nested: false
     },
     {
       id: uuidv4(),
-      itemTextForMarkdown:"&nbsp;&nbsp;- AJAX<br/>",
+      itemTextForMarkdown:"- AJAX<br/>",
       itemTextForFetch:" - AJAX",
       itemTextInput:"AJAX",
-      nested:true
+      nested: false
     },
 
+  ],
+    edit: false
+  },
+  {
+    id: uuidv4(),
+    textInput: "Stretch Goals (h2)",
+    combinedInput: "## Stretch Goals",
+    htmlOutput: `<h2>
+    <a id="user-content-stretch-goals" class="anchor" href="#stretch-goals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Stretch Goals</h2> `,
+    name: "Headings",
+    edit: false
+  },
+  {
+    id: uuidv4(),
+    textInput: ``,
+    combinedInput:`- Goal 1<br/>
+- Goal 2<br/>`,
+    htmlOutput: `<ul>
+    <li>Goal 1</li>
+    <li>Goal2</li>
+    </ul> `,
+    name: "Unordered Lists",
+    listItems: [{
+      id: uuidv4(),
+      itemTextForMarkdown:"- Goal 1<br/>",
+      itemTextForFetch:"- Goal 1",
+      itemTextInput:"Goal 1",
+      nested:false
+    },
+    {
+      id: uuidv4(),
+      itemTextForMarkdown:"- Goal2<br/>",
+      itemTextForFetch:"- Goal2",
+      itemTextInput:"Goal2",
+      nested: false
+    },
   ],
     edit: false
   },
