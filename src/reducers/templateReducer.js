@@ -10,7 +10,7 @@ const markdownReducer = (state=initialState, action) => {
         case LOAD_TEMPLATE:
             return {
                 ...state,
-                templateObjList: [...action.data]
+                templateObjList: templateList
             }
         case EDIT_MARKDOWN_STATE_TEMPLATE:
             let newTemplateObjStateList = [...state.templateObjList]

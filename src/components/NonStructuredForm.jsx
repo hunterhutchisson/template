@@ -83,7 +83,7 @@ function NonStructuredForm({overallForm}) {
 
           <DisplayEditPreviews handleMarkdownFormState={setMarkdownForm}/>
           <div class="row">
-        <div className="col-lg-4 offset-lg-4">
+        <div className="col-lg-6 offset-lg-3">
           <div className="overallForm-app d-flex justify-content-around text-center">
 
             <div className="col-12 d-flex justify-content-between">
