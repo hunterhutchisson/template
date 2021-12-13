@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 let templateList = [
   {
     id: uuidv4(),
-    textInput: "Project Title",
+    textInput: "Project Title (h1)",
     combinedInput: "# Project Title",
     htmlOutput: `<h1> <a id="user-content-project-title" class="anchor" href="#project-title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Title</h1> `,
     name: "Headings",
@@ -28,7 +28,7 @@ let templateList = [
   },
   {
     id: uuidv4(),
-    textInput: "Tech Stack",
+    textInput: "Tech Stack (h2)",
     combinedInput: "## Tech Stack",
     htmlOutput: `<h2>
     <a id="user-content-tech-stack" class="anchor" href="#tech-stack" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tech Stack</h2> `,
@@ -163,7 +163,7 @@ let templateList = [
   },
   {
     id: uuidv4(),
-    textInput: "Code Snippets",
+    textInput: "Code Snippets (h2)",
     combinedInput: "## Code Snippets",
     htmlOutput: `<h2>
     <a id="user-content-code-snippets" class="anchor" href="#code-snippets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code Snippets</h2> `,
@@ -252,7 +252,7 @@ for(let i = 0; i &lt; arrayNums.length; i++){
   },
   {
     id: uuidv4(),
-    textInput: "Screenshots",
+    textInput: "Screenshots (h2)",
     combinedInput: "## Screenshots",
     htmlOutput: `<h2>
     <a id="user-content-screenshots" class="anchor" href="#screenshots" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Screenshots</h2> `,
@@ -279,7 +279,7 @@ for(let i = 0; i &lt; arrayNums.length; i++){
   },
   {
     id: uuidv4(),
-    textInput: "Developers:",
+    textInput: "Developers: (h2)",
     combinedInput: "## Developers:",
     htmlOutput: `<h2>
     <a id="user-content-developers" class="anchor" href="#developers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developers:</h2> `,
