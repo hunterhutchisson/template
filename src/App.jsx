@@ -39,7 +39,7 @@ function App() {
       case "template":
         return <TemplateForm overallForm={type}/>
       default:
-        return <>Form Type Not Selected</>
+        return <></>
     }
   }
   

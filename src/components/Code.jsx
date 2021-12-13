@@ -94,6 +94,7 @@ ${text}
     <>
         <Form onSubmit={handleSubmitCode}>
         <div key="inline-checkbox" className="mb-3" id="headingsize">
+        <Form.Label>Code Text Type: &nbsp;</Form.Label>
                     <Form.Check
                         inline
                         label="Code"
@@ -129,7 +130,7 @@ ${text}
                 </div>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Enter Code:</Form.Label>
-                <Form.Control as="textarea" rows={3}  value={textInput} onChange={e=>setTextInput(e.target.value)}/>
+                <Form.Control as="textarea" rows={3} placeholder="code..." value={textInput} onChange={e=>setTextInput(e.target.value)}/>
             </Form.Group>
             <button className="btn btn-ocean">SUBMIT</button>                
         </Form>

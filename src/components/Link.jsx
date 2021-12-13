@@ -79,12 +79,12 @@ const Link = ({markdownFormActive, name, markdownObjPassed, overallForm}) => {
         <Form onSubmit={handleSubmitLink}>
             <TextEmphasis textEmphasis={textEmphasis} setEmp={setTextEmphasis}/>
             <Form.Group className="mb-3">
-                <Form.Label>URL</Form.Label>
-                <Form.Control type="text" placeholder="URL" value={srcInput} onChange={e=>setSrcInput(e.target.value)}/>
+                <Form.Label>URL:</Form.Label>
+                <Form.Control type="text" placeholder="URL..." value={srcInput} onChange={e=>setSrcInput(e.target.value)}/>
             </Form.Group>
             <Form.Group className="mb-3">
-                <Form.Label>AltText</Form.Label>
-                <Form.Control type="text" placeholder="AltText" value={altTextInput} onChange={e=>setAltTextInput(e.target.value)}/>
+                <Form.Label>AltText:</Form.Label>
+                <Form.Control type="text" placeholder="alttext..." value={altTextInput} onChange={e=>setAltTextInput(e.target.value)}/>
             </Form.Group>
             <button className="btn btn-ocean">SUBMIT</button> 
         </Form>

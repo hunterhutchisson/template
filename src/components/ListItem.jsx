@@ -98,7 +98,7 @@ const ListItem = ({item, setListItems, listItems, orderType, index, overallForm}
         <>
             <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Enter List Item</Form.Label>
+                <Form.Label>Enter List Item:</Form.Label>
                 {item
                 ?
                 <TextEmphasis textEmphasis={textEmphasis} setEmp={setTextEmphasis}/>

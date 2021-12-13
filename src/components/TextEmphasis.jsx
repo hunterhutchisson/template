@@ -9,6 +9,7 @@ const TextEmphasis = ({textEmphasis, setEmp}) => {
     return (
         <div>
             <div key="inline-checkbox" className="mb-3" id="textEmphasis">
+            <Form.Label>Text Emphasis: &nbsp;</Form.Label>
                     <Form.Check
                         inline
                         label="bold"

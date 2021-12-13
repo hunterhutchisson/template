@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <>
         <Navbar collapseOnSelect expand="lg" className="bg-yellow">
-  <Container>
+  <Container fluid>
   <Link to="/" className="changeFZ"><FontAwesomeIcon icon={["fab", "markdown"]} color="gray" /></Link>
   <Navbar.Toggle className="color-purple" aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">

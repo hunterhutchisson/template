@@ -95,6 +95,7 @@ const Headings = ({markdownFormActive, name, markdownObjPassed, overallForm}) =>
     <>
         <Form onSubmit={handleSubmitHeading}>
                 <div key="inline-checkbox" className="mb-3" id="headingsize">
+                <Form.Label>Heading Size: &nbsp;</Form.Label>
                     <Form.Check
                         inline
                         label="1"
@@ -160,8 +161,8 @@ const Headings = ({markdownFormActive, name, markdownObjPassed, overallForm}) =>
                 </div>
                 <TextEmphasis textEmphasis={textEmphasis} setEmp={setTextEmphasis}/>
                 <Form.Group className="mb-3">
-                <Form.Label>Heading</Form.Label>
-                <Form.Control type="text" placeholder="Heading" value={textInput} onChange={e=>setTextInput(e.target.value)}/>
+                <Form.Label>Heading:</Form.Label>
+                <Form.Control type="text" placeholder="heading..." value={textInput} onChange={e=>setTextInput(e.target.value)}/>
             </Form.Group>
                 <button className="btn btn-ocean">SUBMIT</button>                
         </Form>

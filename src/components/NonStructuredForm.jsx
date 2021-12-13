@@ -59,14 +59,17 @@ function NonStructuredForm({overallForm}) {
       <div class="row">
         <div className="col-lg-8 offset-lg-2">
           <div className="overallForm d-flex flex-column mx-auto">
-      <Form onSubmit={handleSubmit}>
-        <select defaultValue={markdownType} onChange={e=>setMarkdownForm(e.target.value)}>
+            
+      <Form className="d-flex justify-content-center" onSubmit={handleSubmit}>
+        <select className="height38" defaultValue={markdownType} onChange={e=>setMarkdownForm(e.target.value)}>
           <option hidden value="defaultValue">Pick a Type</option>
           {basicListGlobal.map(basicObj => {
             return <option key={basicObj.name} value={basicObj.name}>{basicObj.name}</option>
           })}
         </select>
       </Form>
+
+            
       {(markdownForm) 
       ? 
       <>{displayComponent(markdownForm)}</>

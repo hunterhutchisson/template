@@ -77,7 +77,7 @@ const BlockQuote = ({markdownFormActive, name, markdownObjPassed, overallForm}) 
             <TextEmphasis textEmphasis={textEmphasis} setEmp={setTextEmphasis}/>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Enter Blockquotes:</Form.Label>
-                <Form.Control as="textarea" rows={3}  value={textInput} onChange={e=>setTextInput(e.target.value)}/>
+                <Form.Control as="textarea" rows={3}  placeholder="blockquotes..." value={textInput} onChange={e=>setTextInput(e.target.value)}/>
             </Form.Group>
             <button className="btn btn-ocean">SUBMIT</button>                
         </Form>
