@@ -53,4 +53,4 @@ brief website description
 ```js // brief describe function function sum(arrayNums){ let count = 0 for(let i = 0; i < arrayNums.length; i++){ let num = arrayNums[i] count += num } return count }; //Written by Your Name ```
 
 
-![testing path]('./public/images/sshot.png')
+![testing path](/public/images/sshot.png)
