@@ -1,17 +1,134 @@
+/* Color Theme Swatches in Hex */
+/* 
+/* Color Theme Swatches in Hex 
+.Underwater-wild-world-with-tuna-fishes-1-hex { color: #F2E4EE; }
+.Underwater-wild-world-with-tuna-fishes-2-hex { color: #022859; }
+.Underwater-wild-world-with-tuna-fishes-3-hex { color: #024873; }
+.Underwater-wild-world-with-tuna-fishes-4-hex { color: #024059; }
+.Underwater-wild-world-with-tuna-fishes-5-hex { color: #0388A6; }*/
+
+/* Color Theme Swatches in Hex
+redpurple- .smash-1-hex { color: #522073; }
+purple- .smash-2-hex { color: #4B4A99; }
+blue- .smash-3-hex { color: #2C81A5; }
+teal- .smash-4-hex { color: #4CC5C5; }
+yellow .smash-5-hex { color: #FDEE21; } */
+
+
+
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to bottom right, #2C81A5, #4CC5C5);
+  background-attachment: fixed;
+  height: 100%;
+  color: white;
 }
 
+h1{
+  font-weight: 900;
+}
+
+.overallForm-app {
+  height: auto;
+  width: 100%;
+  background-color: #4B4A99;
+  border-radius: 3px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 4px 8px 0px, rgb(0 0 0 / 19%) 0px 6px 20px 0px;
+  padding: 20px;
+}
+.overallForm {
+  height: auto;
+  width: 896px;
+  background-color: #4B4A99;
+  border-radius: 3px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 4px 8px 0px, rgb(0 0 0 / 19%) 0px 6px 20px 0px;
+  padding: 20px;
+}
+.btn-ocean{
+  font-weight: 900;
+  color: #522073;
+  background-color: #FDEE21;
+  border-color: #FDEE21;
+  text-decoration: none;
+}
+.btn-ocean:hover{
+  color: white;
+  background-color: black;
+  border-color: black;
+}
+.bg-yellow{
+  color: #522073;
+  background-color: #FDEE21;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+nav {
+  border-bottom: 0.5px solid #522073;
+  background-color: white;
+}
 
+nav a {
+  text-decoration: none;
+  color: #522073;
+}
+a {
+  text-decoration: none;
+  color: #522073;
+}
+
+nav a:hover {
+  color: black;
+}
+
+.navbar-light .navbar-toggler {
+  color: #522073;
+  border-color: #522073;
+}
+
+.color-purple{
+  border-color: #522073;
+}
+
+.row {
+  padding-bottom: 20px;
+}
+
+.padding-bottom{
+  padding-bottom: 10px;
+}
+.margin-left{
+  margin-left: 10px;
+}
+.padding-top{
+  padding-top: 10px;
+}
+.margin-zero{
+margin-left: 0;
+text-decoration: none;
+}
+
+.edit {
+  display: none;
+}
+  
+.hoverOver:hover > .edit {
+  display: block;
+}
+
+.changeFZ{
+  font-size: 24px;
+}
+
+.wrap{
+  word-wrap: break-word;
+}
 /*!
  * GitHub Light v0.5.0
  * Copyright (c) 2012 - 2017 GitHub, Inc.

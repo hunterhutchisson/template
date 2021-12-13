@@ -48,28 +48,44 @@ const DisplayPreviews = ({handleMarkdownFormState}) => {
     
     return (
         <>
+        {(markdownObjList.length > 0) 
+        ? 
+
+
+                  <div class="row">
+        <div className="col-lg-8 offset-lg-2">
+          <div className="overallForm d-flex flex-column mx-auto">
             {markdownObjList.map(markdownObj=>{
                 return (<>
                 {((!markdownObj.edit) 
                 ?
                 <>
+                <div className="padding-bottom hoverOver">
                 <div dangerouslySetInnerHTML={{__html: markdownObj.htmlOutput}}></div>
-
-                <button className="button btn" onClick={()=>dispatch(switchToEdit(markdownObj))}>
-                    <FontAwesomeIcon icon={["fas", "pencil-alt"]} color="gray" />
-                </button>
-                <button className="button btn" onClick={()=>dispatch(deleteMarkdown(markdownObj))}>
-                    <FontAwesomeIcon icon={["fas", "trash"]} color="gray" />
-                </button>
+                <div className="edit">
+                <button className="btn btn-ocean" onClick={()=>dispatch(switchToEdit(markdownObj))}>EDIT</button> &nbsp;
+                <button className="btn btn-ocean" onClick={()=>dispatch(deleteMarkdown(markdownObj))}>DELETE</button>
+                </div>
+                </div>
                 </>
                 :
                 <>
+                                <div className="padding-bottom">
                 {displayEditComponent(markdownObj)}
-                <button onClick={()=>dispatch(switchToEdit(markdownObj))}>cancel</button>
+                </div>
+
+                
+                <button className="btn btn-ocean padding-top col-2" onClick={()=>dispatch(switchToEdit(markdownObj))}>CANCEL</button>
                 </>
                 )}
                 </>)
             })}
+
+          </div>
+        </div>
+      </div>
+        
+        :null }
         </>
     )
 }

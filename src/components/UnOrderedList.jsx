@@ -71,8 +71,10 @@ ${item.itemTextForFetch}`
         <ListItem listItems={listItems} setListItems={setListItems} orderType="unordered" index={0}/>
         }
         <br />
-        <button onClick={()=>handleSubmitUnOrdered()}>submit</button>
-        {(listItems.length > 0) ? <button onClick={()=>handleDeleteLastItem()}>delete last item</button>:null}
+        <div className="col-12 d-flex justify-content-start">
+        <button  className="btn btn-ocean" onClick={()=>handleSubmitUnOrdered()}>SUBMIT</button>
+        {(listItems.length > 0) ? <button  className="btn btn-ocean margin-left" onClick={()=>handleDeleteLastItem()}>DELETE LAST ITEM</button>:null}
+        </div>
     </>
     )
 }

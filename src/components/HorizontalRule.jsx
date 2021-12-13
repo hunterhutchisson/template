@@ -35,7 +35,7 @@ const HorizontalRule = ({markdownFormActive, name, markdownObjPassed, overallFor
     return (
     <>
         <Form onSubmit={handleSubmitHorizontalRule}>
-            <button>add horizontal rule</button>                
+            <button className="btn btn-ocean">ADD HORIZONTAL RULE</button>                
         </Form>
     </>
     )

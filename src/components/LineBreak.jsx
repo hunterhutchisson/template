@@ -37,7 +37,7 @@ const LineBreak = ({markdownFormActive, name, markdownObjPassed, overallForm}) =
     <>  
     To add line break, put spaces before you press enter to next line (like in a paragraph). Line break is different than adding a blank line
         <Form onSubmit={handleSubmitLineBreak}>
-            <button>add blank link</button>                
+            <button className="btn btn-ocean">ADD BLANK LINE</button>                
         </Form>
     </>
     )

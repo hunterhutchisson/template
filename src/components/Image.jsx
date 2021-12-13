@@ -56,7 +56,7 @@ const Paragraph = ({markdownFormActive, name, markdownObjPassed, overallForm}) =
                 <Form.Label>AltText</Form.Label>
                 <Form.Control type="text" placeholder="AltText" value={altTextInput} onChange={e=>setAltTextInput(e.target.value)}/>
             </Form.Group>
-            <button>submit</button> 
+            <button className="btn btn-ocean">SUBMIT</button> 
         </Form>
     </>
     )

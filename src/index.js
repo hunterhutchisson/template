@@ -8,14 +8,14 @@ import BaseLayout from './components/layout/BaseLayout'
 import reducer from './reducers'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
-import App from './App';
+import App from './App'
 import Preview from './components/Preview';
 import Markdown from './components/Markdown';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import './index.css';
 
 library.add(fab, fas)
 

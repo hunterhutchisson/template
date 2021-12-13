@@ -113,12 +113,16 @@ const ListItem = ({item, setListItems, listItems, orderType, index, overallForm}
                 {item 
                 ? 
                 <>
-                <button className="button btn" onClick={()=>handleSetListEdit(listItems, item)}>
-                    <FontAwesomeIcon icon={["fas", "save"]} color="gray" />
+                        <div className="col-12 d-flex justify-content-start">
+                <button  className="btn btn-ocean" onClick={()=>handleSetListEdit(listItems, item)}>
+                    SAVE CHANGES
                 </button>
+                </div>
                 </>
                 :
-                <button onClick={()=>handleSetListAdd()}>add to list</button>
+                <div className="col-12 d-flex justify-content-start">
+                <button  className="btn btn-ocean" onClick={()=>handleSetListAdd()}>ADD TO LIST</button>
+                </div>
                 }
         </>
     )

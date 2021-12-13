@@ -11,6 +11,7 @@ const Code = ({markdownFormActive, name, markdownObjPassed, overallForm}) => {
     const [currentlyChecked, setCurrentlyChecked] = useState(false)
     const [codeType, setCodeType] = useState(null)
     const [textInput, setTextInput] = useState(()=>markdownObjPassed ? markdownObjPassed.textInput:"")
+    const [fetchInput, setFetchInput] = useState("")
     const [htmlOutput, setHtmlOutput] = useState("")
     const [combinedInput, setCombinedInput] = useState("")
 
@@ -30,23 +31,35 @@ const Code = ({markdownFormActive, name, markdownObjPassed, overallForm}) => {
     const formatTextCode = (text, type) => {
         switch(type){
             case "code":
-                return setCombinedInput(`
+                setCombinedInput("<pre><code>`"+`
+${text}
+` + "`</code></pre>")
+                return setFetchInput(`
 ${text}
 `)
                 break
             case "fenced":
-                return setCombinedInput("```"+`
+                setCombinedInput("<pre><code>```"+`
 ${text}
-`  + "```")
+` + "```</code></pre>")
+                return setFetchInput("```"+`
+${text}
+` + "```")
                 break
             case "enhanced":
-                return setCombinedInput("```js"+`
+                setCombinedInput("<pre><code>```js"+`
 ${text}
-`  + "```")
+` + "```</code></pre>")
+                return setFetchInput("```js"+`
+${text}
+` + "```")
             default:
-                return setCombinedInput("```js"+`
+                setCombinedInput("<pre><code>```js"+`
 ${text}
-`  + "```")
+` + "```</code></pre>")
+                return setFetchInput("```js"+`
+${text}
+` + "```")
         }
     }
 
@@ -56,7 +69,7 @@ ${text}
     }
     useEffect(() => {
         if(combinedInput.length){
-            fetchHTML(combinedInput, setHtmlOutput)
+            fetchHTML(fetchInput, setHtmlOutput)
         }
     }, [combinedInput])
     useEffect(() => {
@@ -118,7 +131,7 @@ ${text}
                 <Form.Label>Enter Code:</Form.Label>
                 <Form.Control as="textarea" rows={3}  value={textInput} onChange={e=>setTextInput(e.target.value)}/>
             </Form.Group>
-            <button>submit</button>                
+            <button className="btn btn-ocean">SUBMIT</button>                
         </Form>
     </>
     )

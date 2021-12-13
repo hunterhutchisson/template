@@ -159,8 +159,11 @@ const Headings = ({markdownFormActive, name, markdownObjPassed, overallForm}) =>
                     />
                 </div>
                 <TextEmphasis textEmphasis={textEmphasis} setEmp={setTextEmphasis}/>
-                <input type="text" placeholder="Heading" value={textInput} onChange={e=>setTextInput(e.target.value)}/>
-                <button>submit</button>                
+                <Form.Group className="mb-3">
+                <Form.Label>Heading</Form.Label>
+                <Form.Control type="text" placeholder="Heading" value={textInput} onChange={e=>setTextInput(e.target.value)}/>
+            </Form.Group>
+                <button className="btn btn-ocean">SUBMIT</button>                
         </Form>
     </>
     )

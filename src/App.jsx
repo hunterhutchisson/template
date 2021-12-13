@@ -39,16 +39,29 @@ function App() {
       case "template":
         return <TemplateForm overallForm={type}/>
       default:
-        return <>no form yet</>
+        return <>Form Type Not Selected</>
     }
   }
   
   return (
     <>
-      App
-      <button onClick={()=>dispatch(switchOverallForm("nonstructured"))}>NonStructured</button>
-      <button onClick={()=>dispatch(switchOverallForm("template"))}>Template</button>
-      <>here {displayForms(overallFormState)}</>
+      
+      <div class="row">
+        <div className="col-lg-4 offset-lg-4">
+          <div className="overallForm-app d-flex justify-content-around text-center">
+            <div className="row">
+            <div className="col-12"><h1>FORM TYPE</h1></div>
+            <div className="col-12 d-flex justify-content-around">
+            <button className="btn btn-ocean" onClick={()=>dispatch(switchOverallForm("nonstructured"))}>NonStructured</button>
+            <button className="btn btn-ocean" onClick={()=>dispatch(switchOverallForm("template"))}>Template</button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <>{displayForms(overallFormState)}</>
+
     </>
   )
 }

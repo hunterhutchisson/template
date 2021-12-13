@@ -1,4 +1,4 @@
-import { SELECTED_MARKDOWNS, EDIT_MARKDOWN_STATE, EDIT_MARKDOWN, DELETE_MARKDOWN } from "../actions/types"
+import { SELECTED_MARKDOWNS, EDIT_MARKDOWN_STATE, EDIT_MARKDOWN, DELETE_MARKDOWN, RESET_MARKDOWN } from "../actions/types"
 
 const initialState = {
     markdownObjList: []
@@ -39,6 +39,11 @@ const markdownReducer = (state=initialState, action) => {
             return {
                 ...state,
                 markdownObjList: state.markdownObjList.filter(obj=> obj.id !== action.markdownObj.id),
+            }
+        case RESET_MARKDOWN:
+            return {
+                ...state,
+                markdownObjList: []
             }
         default:
             return state

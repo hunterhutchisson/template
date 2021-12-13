@@ -20,9 +20,9 @@ let templateList = [
   {
     id: uuidv4(),
     altTextInput: "website image or video",
-    srcInput: "https://www.businessprocessincubator.com/wp-content/uploads/thumbnails/thumbnail-42864.png",
-    combinedInput: "![website image or video](https://www.businessprocessincubator.com/wp-content/uploads/thumbnails/thumbnail-42864.png)",
-    htmlOutput: `<p><a href="https://camo.githubusercontent.com/cd633e69d12cdd481790c8e166fe46edf37ade625a02db56f37a1dc3a682321e/68747470733a2f2f7777772e627573696e65737370726f63657373696e63756261746f722e636f6d2f77702d636f6e74656e742f75706c6f6164732f7468756d626e61696c732f7468756d626e61696c2d34323836342e706e67" target="_blank" rel="nofollow"><img src="https://camo.githubusercontent.com/cd633e69d12cdd481790c8e166fe46edf37ade625a02db56f37a1dc3a682321e/68747470733a2f2f7777772e627573696e65737370726f63657373696e63756261746f722e636f6d2f77702d636f6e74656e742f75706c6f6164732f7468756d626e61696c732f7468756d626e61696c2d34323836342e706e67" alt=" web" data-canonical-src="https://www.businessprocessincubator.com/wp-content/uploads/thumbnails/thumbnail-42864.png" style="max-width:100%;"></a></p> `,
+    srcInput: "https://images.unsplash.com/photo-1562813733-b31f71025d54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
+    combinedInput: "![website image or video](https://images.unsplash.com/photo-1562813733-b31f71025d54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80)",
+    htmlOutput: `<p><img src="https://images.unsplash.com/photo-1562813733-b31f71025d54?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1169&amp;q=80" alt="website image or video" style="max-width:100%;"></p> `,
     name: "Images",
     edit: false
   },
@@ -184,7 +184,7 @@ function sum(arrayNums){
 };
 //Written by Your Name
 `,
-    combinedInput: "```js"+`
+    combinedInput: "<pre><code>```"+`
 // brief describe function
 function sum(arrayNums){
     let count = 0
@@ -195,17 +195,18 @@ function sum(arrayNums){
     return count   
 };
 //Written by Your Name
-`  + "```",
-    htmlOutput: `<div class="highlight highlight-source-js"><pre><span class="pl-c">// brief describe function</span>
-<span class="pl-k">function</span> <span class="pl-en">sum</span><span class="pl-kos">(</span><span class="pl-s1">arrayNums</span><span class="pl-kos">)</span><span class="pl-kos">{</span>
-    <span class="pl-k">let</span> <span class="pl-s1">count</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>
-    <span class="pl-k">for</span><span class="pl-kos">(</span><span class="pl-k">let</span> <span class="pl-s1">i</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">;</span> <span class="pl-s1">i</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">arrayNums</span><span class="pl-kos">.</span><span class="pl-c1">length</span><span class="pl-kos">;</span> <span class="pl-s1">i</span><span class="pl-c1">++</span><span class="pl-kos">)</span><span class="pl-kos">{</span>
-      <span class="pl-k">let</span> <span class="pl-s1">num</span> <span class="pl-c1">=</span> <span class="pl-s1">arrayNums</span><span class="pl-kos">[</span><span class="pl-s1">i</span><span class="pl-kos">]</span>
-      <span class="pl-s1">count</span> <span class="pl-c1">+=</span> <span class="pl-s1">num</span>
-    <span class="pl-kos">}</span>
-    <span class="pl-k">return</span> <span class="pl-s1">count</span>   
-<span class="pl-kos">}</span><span class="pl-kos">;</span>
-<span class="pl-c">//Written by Your Name</span></pre></div> `,
+`  + "```</code></pre>",
+    htmlOutput: `<pre><code>// brief describe function  
+function sum(arrayNums){  
+  let count = 0  
+for(let i = 0; i &lt; arrayNums.length; i++){  
+  let num = arrayNums[i]  
+  count += num  
+  }  
+  return count  
+};  
+//Written by Your Name
+</code></pre> `,
     name: "Code",
     edit: false
   },
@@ -223,7 +224,7 @@ function sum(arrayNums){
 };
 //Written by Your Name
 `,
-    combinedInput: "```js"+`  
+    combinedInput: "<pre><code>```"+`  
 // brief describe function  
 function sum(arrayNums){  
   let count = 0  
@@ -234,17 +235,18 @@ for(let i = 0; i < arrayNums.length; i++){
   return count  
 };  
 //Written by Your Name
-`  + "```",
-    htmlOutput: `<div class="highlight highlight-source-js"><pre><span class="pl-c">// brief describe function</span>
-<span class="pl-k">function</span> <span class="pl-en">sum</span><span class="pl-kos">(</span><span class="pl-s1">arrayNums</span><span class="pl-kos">)</span><span class="pl-kos">{</span>
-    <span class="pl-k">let</span> <span class="pl-s1">count</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>
-    <span class="pl-k">for</span><span class="pl-kos">(</span><span class="pl-k">let</span> <span class="pl-s1">i</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">;</span> <span class="pl-s1">i</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">arrayNums</span><span class="pl-kos">.</span><span class="pl-c1">length</span><span class="pl-kos">;</span> <span class="pl-s1">i</span><span class="pl-c1">++</span><span class="pl-kos">)</span><span class="pl-kos">{</span>
-      <span class="pl-k">let</span> <span class="pl-s1">num</span> <span class="pl-c1">=</span> <span class="pl-s1">arrayNums</span><span class="pl-kos">[</span><span class="pl-s1">i</span><span class="pl-kos">]</span>
-      <span class="pl-s1">count</span> <span class="pl-c1">+=</span> <span class="pl-s1">num</span>
-    <span class="pl-kos">}</span>
-    <span class="pl-k">return</span> <span class="pl-s1">count</span>   
-<span class="pl-kos">}</span><span class="pl-kos">;</span>
-<span class="pl-c">//Written by Your Name</span></pre></div> `,
+`  + "```</code></pre>",
+    htmlOutput: `<pre><code>// brief describe function  
+function sum(arrayNums){  
+  let count = 0  
+for(let i = 0; i &lt; arrayNums.length; i++){  
+  let num = arrayNums[i]  
+  count += num  
+  }  
+  return count  
+};  
+//Written by Your Name
+</code></pre> `,
     name: "Code",
     edit: false
   },

@@ -79,7 +79,7 @@ const BlockQuote = ({markdownFormActive, name, markdownObjPassed, overallForm}) 
                 <Form.Label>Enter Blockquotes:</Form.Label>
                 <Form.Control as="textarea" rows={3}  value={textInput} onChange={e=>setTextInput(e.target.value)}/>
             </Form.Group>
-            <button>submit</button>                
+            <button className="btn btn-ocean">SUBMIT</button>                
         </Form>
     </>
     )

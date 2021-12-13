@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { switchOverallForm } from '../actions/infoAction'
+import {Link} from 'react-router-dom'
+
 
 
 function Preview() {
@@ -19,10 +21,38 @@ function Preview() {
     }
     return (
         <>
-            Preview page
-            <button onClick={()=>dispatch(switchOverallForm("nonstructured"))}>NonStructured</button>
-            <button onClick={()=>dispatch(switchOverallForm("template"))}>Template</button>
-            {overallFormState === "nonstructured" ? displayPreview(markdownObjList):displayPreview(templateObjList)}
+            <div class="row">
+        <div className="col-lg-4 offset-lg-4">
+          <div className="overallForm-app d-flex justify-content-around text-center">
+            <div className="row">
+            <div className="col-12"><h1>PREVIEW TYPE</h1></div>
+            <div className="col-12 d-flex justify-content-around">
+            <button className="btn btn-ocean" onClick={()=>dispatch(switchOverallForm("nonstructured"))}>NonStructured</button>
+            <button className="btn btn-ocean" onClick={()=>dispatch(switchOverallForm("template"))}>Template</button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div className="col-lg-8 offset-lg-2">
+          <div className="overallForm d-flex flex-column mx-auto">
+          {overallFormState === "nonstructured" ? displayPreview(markdownObjList):displayPreview(templateObjList)}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div className="col-lg-4 offset-lg-4">
+          <div className="overallForm-app d-flex justify-content-around text-center">
+
+            <div className="col-12 d-flex justify-content-around">
+            <Link to="/" className="margin-zero"><button  className="btn btn-ocean" >Go Back To Edit</button></Link>
+            <Link to="/markdown" className="margin-zero"><button  className="btn btn-ocean" >View Markdown</button></Link>
+            </div>
+
+          </div>
+        </div>
+      </div>
         </>
     )
 }
