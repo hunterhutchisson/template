@@ -24,7 +24,7 @@ MD Styles is a tool to help developers with the syntax of markdown enhancements 
 ## Code Snippets
 
 ```js
-
+//markdown reducer
    
 import { EDIT_MARKDOWN_STATE_TEMPLATE, EDIT_MARKDOWN_TEMPLATE, DELETE_MARKDOWN_TEMPLATE, LOAD_TEMPLATE } from "../actions/types"
 import templateList from "../assets/data"
@@ -79,6 +79,7 @@ export default markdownReducer
 
 
 ```js
+//image form component
 import React, {useState, useEffect} from "react";
 import { useDispatch } from "react-redux";
 import {Form} from 'react-bootstrap';
@@ -128,20 +129,18 @@ const Paragraph = ({markdownFormActive, name, markdownObjPassed, overallForm}) =
 
     return (
     <>
-        
-
-            
-                Path or URL:
-                setSrcInput(e.target.value)}/>
-            
-            
-                AltText:
-                setAltTextInput(e.target.value)}/>
-            
-            SUBMIT 
-        
-
-    
+        <Form onSubmit={handleSubmitImage}>
+            <Form.Group className="mb-3">
+                <Form.Label>Path or URL:</Form.Label>
+                <Form.Control type="text" placeholder="Path or URL" value={srcInput} onChange={e=>setSrcInput(e.target.value)}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>AltText:</Form.Label>
+                <Form.Control type="text" placeholder="AltText" value={altTextInput} onChange={e=>setAltTextInput(e.target.value)}/>
+            </Form.Group>
+            <button className="btn btn-ocean">SUBMIT</button> 
+        </Form>
+    </>
     )
 }
 
