@@ -88,7 +88,7 @@ import { storeMarkdowns, editMarkdown } from "../actions/markdownActions";
 import { editMarkdownTemplate } from "../actions/templateActions";
 import { fetchHTML } from './utils'
 
-const Paragraph = ({markdownFormActive, name, markdownObjPassed, overallForm}) => {
+const Image = ({markdownFormActive, name, markdownObjPassed, overallForm}) => {
     const dispatch = useDispatch()
     const [altTextInput, setAltTextInput] = useState(()=>markdownObjPassed ? markdownObjPassed.altTextInput:"")
     const [srcInput, setSrcInput] = useState(()=>markdownObjPassed ? markdownObjPassed.srcInput:"")
@@ -144,7 +144,7 @@ const Paragraph = ({markdownFormActive, name, markdownObjPassed, overallForm}) =
     )
 }
 
-export default Paragraph
+export default Image
 ```
 
 
