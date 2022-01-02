@@ -2,7 +2,7 @@ export const fetchHTML = async (markdown, setHtmlOutput) => {
     let result = (await fetch('https://api.github.com/markdown', {
         method: 'POST',
         headers: {
-            'authorization': "token " + "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",
+            'authorization': "token " + process.env.REACT_APP_MYKEY,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({'mode': 'markdown', 'text': markdown})
